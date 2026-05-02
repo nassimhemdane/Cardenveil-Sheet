@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "id": "nouveau-personnage",
+  "templateId": "cardenveil-standard",
+  "createdAt": "2026-04-29T17:39:47.782580+00:00",
+  "updatedAt": "2026-05-02T11:21:21.763600+00:00",
+  "identity": {
+    "nom": "Default",
+    "joueur": "Nassim",
+    "niveau": 1,
+    "race": "gnome ",
+    "alignement": "chaotique bon",
+    "age": "32",
+    "taille": "1m78",
+    "poids": "DF",
+    "yeux": "DFD",
+    "peau": "F",
+    "cheveux": "DF"
+  },
+  "stats": {
+    "force": 14,
+    "agilite": 12,
+    "esprit": 14,
+    "social": 10
+  },
+  "derived": {
+    "pvMax": 83,
+    "pvActuels": 83,
+    "pvTemporaires": 0,
+    "mouvement": 10,
+    "initiative": 0,
+    "perceptionPassive": 10,
+    "seuilSauvegarde": "",
+    "seuilMiss": "",
+    "canalisation": "",
+    "bonusAttaque": "",
+    "inspiration": "http://127.0.0.1:8000/assethttp://127.0.0.1:8000/assets/nouveau-personnage/chatgpt-image-apr-26-2026-03_25_03-pm-png-20260429195305.pngs/nouveau-personnage/chatgpt-image-apr-26-2026-03_25_03-pm-png-20260429195305.png",
+    "fatigue": "-1 val.cartes",
+    "mort": ""
+  },
+  "defense": {
+    "parade": "9",
+    "armure": "2",
+    "deflexion": "1",
+    "gardeBonus": "5",
+    "bonus": "1"
+  },
+  "resources": {
+    "or": "200",
+    "rations": "2",
+    "cartesEtTokens": ""
+  },
+  "skills": {
+    "athletisme": {
+      "trained": true,
+      "bonus": 3
+    },
+    "resilience": {
+      "trained": true,
+      "bonus": 0
+    },
+    "acrobaties": {
+      "trained": false,
+      "bonus": 0
+    },
+    "discretion": {
+      "trained": false,
+      "bonus": 0
+    },
+    "escamotage": {
+      "trained": false,
+      "bonus": 0
+    },
+    "arcanes": {
+      "trained": true,
+      "bonus": 0
+    },
+    "investigation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "perception": {
+      "trained": false,
+      "bonus": 0
+    },
+    "culture": {
+      "trained": false,
+      "bonus": 0
+    },
+    "survie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "persuasion": {
+      "trained": false,
+      "bonus": 0
+    },
+    "tromperie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "intimidation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "representation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "perspicacite": {
+      "trained": false,
+      "bonus": 0
+    },
+    "dressage": {
+      "trained": false,
+      "bonus": 0
+    }
+  },
+  "weapons": [
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": "Famille: parade "
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    }
+  ],
+  "inventory": {
+    "equipement": "",
+    "inventaire": "",
+    "totem": ""
+  },
+  "narrative": {
+    "background": "",
+    "objectif": "",
+    "liens": "",
+    "traitsSpeciaux": [
+      "",
+      ""
+    ],
+    "personnalite": "",
+    "reputation": "",
+    "education": "",
+    "croyances": "",
+    "cicatrices": "",
+    "pulsion": "",
+    "maniesEtTics": "",
+    "instinct": ""
+  },
+  "actions": [],
+  "reactions": [],
+  "tokens": [],
+  "capacities": [
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img7-png-20260501145938.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "diamond",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img6-png-20260501145942.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "diamond",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img6-png-20260501114354.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/chatgpt-image-apr-26-2026-09_30_16-pm-png-20260501144544.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img5.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img6.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    }
+  ],
+  "notes": "",
+  "portrait": "/assets/nouveau-personnage/chatgpt-image-apr-26-2026-03_25_03-pm-png-20260502132113881061-63f9205a.png",
+  "progression": {
+    "xpDepenses": 10,
+    "xpDisponibles": 0
+  },
+  "totem": {
+    "image": "/assets/nouveau-personnage/totem.png"
+  },
+  "abilityControls": {
+    "cardMin": "",
+    "cardMax": "",
+    "knownAbilities": "",
+    "maxPreparedAbilities": "",
+    "colorReductions": {
+      "spade": 0,
+      "heart": 0,
+      "diamond": 0,
+      "club": 0
+    }
+  },
+  "weaponMasteries": [
+    {
+      "family": "",
+      "perfection": 0
+    }
+  ],
+  "elementalMasteries": [
+    {
+      "element": "",
+      "level": 1
+    },
+    {
+      "element": "",
+      "level": 1
+    },
+    {
+      "element": "",
+      "level": 1
+    }
+  ],
+  "equipment": {
+    "casque": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "volonte": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "plastron": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "armure": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "gantelets": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "initiative": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "bottes": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "vitesse": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "anneau": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "amulette": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "cape": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    }
+  },
+  "inventoryItems": [
+    {
+      "type": "Arme",
+      "slot": "casque",
+      "family": "Épées droites",
+      "weaponName": "Épée courte",
+      "name": "Épée courte",
+      "raretePrix": "",
+      "description": "",
+      "degats": "1d6",
+      "parade": "8",
+      "attributs": "Finesse, Garde",
+      "familySummary": "Parade avec Force + Agilité, une parade réussie donne l'avantage.",
+      "catalystColor": "spade",
+      "equipmentData": {
+        "nom": "",
+        "raretePrix": "",
+        "deflexion": "",
+        "volonte": "",
+        "enchantement": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "Divers",
+      "slot": "casque",
+      "family": "Épées droites",
+      "weaponName": "",
+      "name": "",
+      "raretePrix": "",
+      "description": "",
+      "degats": "",
+      "parade": "",
+      "attributs": "",
+      "familySummary": "",
+      "catalystColor": "spade",
+      "equipmentData": {
+        "nom": "",
+        "raretePrix": "",
+        "deflexion": "",
+        "volonte": "",
+        "enchantement": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "Divers",
+      "slot": "casque",
+      "family": "Épées droites",
+      "weaponName": "",
+      "name": "",
+      "raretePrix": "",
+      "description": "",
+      "degats": "",
+      "parade": "",
+      "attributs": "",
+      "familySummary": "",
+      "catalystColor": "spade",
+      "equipmentData": {
+        "nom": "",
+        "raretePrix": "",
+        "deflexion": "",
+        "volonte": "",
+        "enchantement": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "Divers",
+      "slot": "casque",
+      "family": "Épées droites",
+      "weaponName": "",
+      "name": "",
+      "raretePrix": "",
+      "description": "",
+      "degats": "",
+      "parade": "",
+      "attributs": "",
+      "familySummary": "",
+      "catalystColor": "spade",
+      "equipmentData": {
+        "nom": "",
+        "raretePrix": "",
+        "deflexion": "",
+        "volonte": "",
+        "enchantement": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "Divers",
+      "slot": "casque",
+      "family": "Épées droites",
+      "weaponName": "",
+      "name": "",
+      "raretePrix": "",
+      "description": "",
+      "degats": "",
+      "parade": "",
+      "attributs": "",
+      "familySummary": "",
+      "catalystColor": "spade",
+      "equipmentData": {
+        "nom": "",
+        "raretePrix": "",
+        "deflexion": "",
+        "volonte": "",
+        "enchantement": "",
+        "description": ""
+      }
+    }
+  ],
+  "feats": [
+    {
+      "title": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "description": ""
+    }
+  ]
+}

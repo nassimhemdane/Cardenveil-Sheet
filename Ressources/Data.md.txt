@@ -1,0 +1,306 @@
+# Cardenveil — Character Sheet Editor
+
+## 1. Overview
+
+Cardenveil is a web application designed to create, edit, and export RPG character sheets based on a structured and visually rich format inspired by an existing PDF sheet.
+
+The application provides:
+- A visual editor that reproduces the layout of the original sheet
+- A structured JSON model for each character
+- The ability to save and load characters
+- A future capability to export sheets as PDF
+
+The system is designed to be:
+- Data-driven (JSON as single source of truth)
+- Extensible (new mechanics, sections, abilities)
+- Efficient to manipulate with code generation tools like Codex
+
+---
+
+## 2. Core Objective
+
+The goal of the application is to recreate a fully editable, persistent, and exportable version of a complex RPG character sheet.
+
+This includes:
+- Editing all character attributes
+- Managing both gameplay and narrative data
+- Supporting game-specific mechanics (tokens, abilities, derived stats)
+- Producing a printable/exportable version identical to the original sheet
+
+---
+
+## 3. Architecture
+
+### 3.1 Backend
+
+The backend is a lightweight Python HTTP server (`app.py`) responsible for:
+- Serving the frontend (HTML, CSS, JS)
+- Loading template data
+- Saving and retrieving character files
+- Managing assets (images)
+
+Data is stored locally using JSON files:
+
+/data
+/templates
+cardenveil-standard.json
+/characters
+*.rpsheet.json
+
+Each character is saved independently and can be loaded or modified at any time.
+
+---
+
+### 3.2 Frontend
+
+The frontend is composed of:
+
+- `templates/index.html` → main layout (visual sheet)
+- `static/js/editor.js` → logic (binding, updates, state management)
+- `static/css/sheet.css` → styling (PDF-like rendering)
+
+The interface mirrors the structure of the original PDF sheet and allows direct editing of all fields.
+
+---
+
+### 3.3 Data Model
+
+Each character is represented as a structured JSON object.
+
+Recommended structure:
+
+```json
+{
+  "identity": {},
+  "physique": {},
+  "stats": {},
+  "derived": {},
+  "combat": {},
+  "armes": [],
+  "narratif": {},
+  "abilities": [],
+  "inventory": {},
+  "meta": {}
+}This structure ensures:
+
+clear separation of concerns
+easy binding between UI and data
+scalability for future features
+4. Character Sheet Structure (PDF)
+
+The application reproduces a two-page character sheet.
+
+4.1 Page 1 — Core Sheet
+Identity
+Character name
+Race
+Alignment
+Player name
+Level
+Experience
+Physical Description
+Age
+Height
+Weight
+Eyes
+Skin
+Hair
+Characteristics
+
+Primary attributes:
+
+Force
+Agility
+Spirit
+Social
+
+Each attribute:
+
+has a base value
+may include modifiers
+is linked to specific skills
+Skills
+
+Examples include:
+
+Athlétisme
+Résilience
+Discrétion
+Escamotage
+Arcanes
+Investigation
+Perception
+Culture
+Persuasion
+Tromperie
+Intimidation
+
+These skills are used for:
+
+checks
+saves
+interactions
+Derived Stats
+
+These are computed or assigned values:
+
+Parade
+Armure
+Initiative
+Movement
+PV (current / max)
+Bonus PV
+Temporary PV
+Fatigue levels
+Save thresholds
+Attack bonus
+Channeling
+Combat & Actions
+
+This section includes:
+
+Actions
+Bonus actions
+Reactions
+Tokens (Force, Agility, Spirit, Social)
+
+Examples:
+
+Attack
+Secondary attack
+Dodge
+Push
+Analyze
+Opportunity attack
+Coordination
+Stabilization
+Weapons
+
+Each weapon includes:
+
+Name
+Damage dice
+Attribute scaling (Force / Agility)
+Critical value
+Advantage
+Additional bonuses
+
+Multiple weapon slots are available.
+
+Narrative Section
+
+Free text fields:
+
+Background
+Objective
+Personality
+Reputation
+Education
+Beliefs
+Scars
+Instinct
+Links
+Traits & Special Mechanics
+Totem
+Special traits
+Passive abilities
+Inventory & Equipment
+Inventory list
+Equipment slots
+Resources (gold, rations)
+4.2 Page 2 — Abilities System
+
+The second page contains a structured table of abilities.
+
+Each ability includes:
+
+Name
+Description
+Value or effect
+Cost
+Attribute used (Force, Spirit, etc.)
+Save type
+Usage type (Action, Bonus Action, Reaction)
+
+Examples of abilities:
+
+Area effects
+Movement abilities
+Buffs and debuffs
+Healing spells
+Transformations
+
+This section must support:
+
+dynamic addition/removal of abilities
+full editing of all fields
+structured storage in JSON
+5. Key Design Principles
+5.1 Single Source of Truth
+
+All data must come from JSON.
+No values should be hardcoded in the UI.
+
+5.2 UI as a Data Projection
+
+The interface is a direct visual representation of the JSON structure.
+
+5.3 Modular Design
+
+Each section:
+
+maps to a specific JSON block
+can evolve independently
+5.4 Fidelity to Original Sheet
+
+The layout should closely match the original PDF:
+
+spacing
+grouping
+visual hierarchy
+5.5 Extensibility
+
+The system must allow:
+
+adding new mechanics
+modifying stats
+extending abilities
+6. Future Features
+
+Planned improvements include:
+
+PDF export (print-ready A4 layout)
+Full page 2 editor (abilities system)
+Automatic stat calculations
+Input validation (ranges, types)
+Undo/redo system
+Auto-save
+JSON import/export
+Multi-template support
+7. Summary
+
+Cardenveil is a structured character sheet editor combining:
+
+a complex RPG system
+a visual interface
+a JSON-based architecture
+
+The main challenges are:
+
+maintaining strict data consistency
+ensuring full UI-to-data binding
+supporting scalability for future mechanics
+
+The current system already provides:
+
+a working editor
+a solid foundation
+a faithful reproduction of the sheet
+
+The next steps focus on:
+
+completing data binding
+implementing the abilities system
+enabling PDF export
+
+

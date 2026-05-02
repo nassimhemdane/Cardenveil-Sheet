@@ -1,0 +1,52 @@
+{
+  "id": "cardenveil-standard",
+  "name": "Cardenveil - Standard",
+  "language": "fr",
+  "version": 1,
+  "description": "Template dynamique inspiré des fiches Cardenveil existantes.",
+  "stats": [
+    { "key": "force", "label": "Force", "short": "FO" },
+    { "key": "agilite", "label": "Agilité", "short": "AGI" },
+    { "key": "esprit", "label": "Esprit", "short": "ESP" },
+    { "key": "social", "label": "Social", "short": "SOC" }
+  ],
+  "skills": [
+    { "key": "athletisme", "label": "Athlétisme", "stat": "force" },
+    { "key": "resilience", "label": "Résilience", "stat": "force" },
+    { "key": "acrobaties", "label": "Acrobaties", "stat": "agilite" },
+    { "key": "discretion", "label": "Discrétion", "stat": "agilite" },
+    { "key": "escamotage", "label": "Escamotage", "stat": "agilite" },
+    { "key": "arcanes", "label": "Arcanes", "stat": "esprit" },
+    { "key": "investigation", "label": "Investigation", "stat": "esprit" },
+    { "key": "perception", "label": "Perception", "stat": "esprit" },
+    { "key": "culture", "label": "Culture", "stat": "esprit" },
+    { "key": "survie", "label": "Survie", "stat": "esprit" },
+    { "key": "persuasion", "label": "Persuasion", "stat": "social" },
+    { "key": "tromperie", "label": "Tromperie", "stat": "social" },
+    { "key": "intimidation", "label": "Intimidation", "stat": "social" },
+    { "key": "representation", "label": "Représentation", "stat": "social" },
+    { "key": "perspicacite", "label": "Perspicacité", "stat": "social" },
+    { "key": "dressage", "label": "Dressage", "stat": "social" }
+  ],
+  "pages": [
+    {
+      "id": "recto",
+      "title": "Personnage",
+      "modules": ["identity", "stats", "combat", "skills", "weapons", "inventory", "narrative"]
+    },
+    {
+      "id": "verso",
+      "title": "Capacités",
+      "modules": ["actions", "reactions", "tokens", "capacities", "notes"]
+    }
+  ],
+  "capacityFields": [
+    { "key": "nom", "label": "Nom", "type": "text" },
+    { "key": "type", "label": "Type", "type": "text" },
+    { "key": "cout", "label": "Coût", "type": "text" },
+    { "key": "portee", "label": "Portée", "type": "text" },
+    { "key": "declencheur", "label": "Déclencheur", "type": "text" },
+    { "key": "effet", "label": "Effet", "type": "textarea" },
+    { "key": "amelioration", "label": "Amélioration / notes", "type": "textarea" }
+  ]
+}

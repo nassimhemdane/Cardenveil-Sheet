@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "id": "nyx",
+  "templateId": "cardenveil-standard",
+  "createdAt": "2026-05-02T00:00:00+00:00",
+  "updatedAt": "2026-05-02T11:22:10.418120+00:00",
+  "identity": {
+    "nom": "Nyx",
+    "joueur": "",
+    "niveau": "",
+    "race": "Elfe des bois",
+    "alignement": "Loyal Mauvais",
+    "age": "38",
+    "taille": "1m78",
+    "poids": "75kg",
+    "yeux": "Jaune",
+    "peau": "Blanche",
+    "cheveux": "Bruns"
+  },
+  "portrait": "/assets/nyx/totem-png-20260502122009262751-193be509.png",
+  "stats": {
+    "force": 14,
+    "agilite": 16,
+    "esprit": 10,
+    "social": 6
+  },
+  "progression": {
+    "xpDepenses": 0,
+    "xpDisponibles": 0
+  },
+  "derived": {
+    "pvMax": "",
+    "bonusPv": "",
+    "pvActuels": "",
+    "pvTemporaires": "",
+    "mouvement": 13,
+    "initiative": 6,
+    "perceptionPassive": 10,
+    "seuilSauvegarde": "",
+    "seuilMiss": "1",
+    "canalisation": "",
+    "bonusAttaque": "",
+    "inspiration": "",
+    "fatigue": "",
+    "mort": ""
+  },
+  "defense": {
+    "parade": "",
+    "armure": "",
+    "deflexion": "",
+    "gardeBonus": "",
+    "bonus": ""
+  },
+  "resources": {
+    "or": "",
+    "rations": "",
+    "cartesEtTokens": ""
+  },
+  "skills": {
+    "athletisme": {
+      "trained": false,
+      "bonus": 2
+    },
+    "resilience": {
+      "trained": false,
+      "bonus": 0
+    },
+    "acrobaties": {
+      "trained": true,
+      "bonus": 3
+    },
+    "discretion": {
+      "trained": true,
+      "bonus": 0
+    },
+    "escamotage": {
+      "trained": false,
+      "bonus": 0
+    },
+    "arcanes": {
+      "trained": false,
+      "bonus": 0
+    },
+    "investigation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "perception": {
+      "trained": false,
+      "bonus": 0
+    },
+    "culture": {
+      "trained": false,
+      "bonus": 0
+    },
+    "survie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "persuasion": {
+      "trained": false,
+      "bonus": -2
+    },
+    "tromperie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "intimidation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "representation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "perspicacite": {
+      "trained": false,
+      "bonus": 0
+    },
+    "dressage": {
+      "trained": false,
+      "bonus": 0
+    }
+  },
+  "weapons": [
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    }
+  ],
+  "inventory": {
+    "equipement": "",
+    "inventaire": "",
+    "totem": "Utilises une bonus action pour bloquer une carte et déployer les ailes noires de ta cape ; tu gagnes avantage aux jets d’Acrobaties, laisses derrière toi une traînée d’obscurité aveuglante dans ta zone de contrôle qui persiste pendant 1 round, et bénéficies de la True Sight tant que tu te trouves à l’intérieur de cette obscurité."
+  },
+  "totem": {
+    "nom": "Totem",
+    "description": "Utilises une bonus action pour bloquer une carte et déployer les ailes noires de ta cape ; tu gagnes avantage aux jets d’Acrobaties, laisses derrière toi une traînée d’obscurité aveuglante dans ta zone de contrôle qui persiste pendant 1 round, et bénéficies de la True Sight tant que tu te trouves à l’intérieur de cette obscurité.",
+    "image": "/assets/nyx/totem-20260502122013488961-d832ece7.png"
+  },
+  "narrative": {
+    "background": "",
+    "objectif": "",
+    "liens": "",
+    "traitsSpeciaux": [
+      "Vous pouvez vous déplacer de 5m après une réaction.",
+      "Avantage aux 2 premiers jets d’initiative. (Elfe des bois)"
+    ],
+    "personnalite": "",
+    "reputation": "",
+    "education": "",
+    "croyances": "",
+    "cicatrices": "",
+    "pulsion": "",
+    "maniesEtTics": "",
+    "instinct": ""
+  },
+  "actions": [],
+  "reactions": [],
+  "tokens": [],
+  "capacities": [
+    {
+      "name": "Ruée Tranchante",
+      "prepared": true,
+      "image": "/assets/nyx/ruée-tranchante-20260502122024716281-4815b509.png",
+      "description": "Faites une attaque en ligne de 10m avec votre arme infligeant 1.5 dégâts de base aux créatures sur son passage.",
+      "value": {
+        "main": "1.5 Dégâts de base",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "diamond",
+        "base": 11,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 5
+      },
+      "incantation": "Agilité",
+      "save": "Acrobaties (Moitié dégâts)",
+      "usage": "Action"
+    },
+    {
+      "name": "Pluie de Plumes",
+      "prepared": true,
+      "image": "/assets/nyx/pluie-de-plumes-20260502122028642025-68a0d760.png",
+      "description": "Utilisez votre cape pour projeter des plumes-couteaux. Choisissez entre un cône de 9m infligeant 1 dégâts de base ou une attaque ciblée à 18m infligeant 2 dégâts de base.",
+      "value": {
+        "main": "1 / 2 Dégâts de base",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "diamond",
+        "base": 14,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 8
+      },
+      "incantation": "Agilité",
+      "save": "Acrobaties (Moitié dégâts)",
+      "usage": "Action"
+    },
+    {
+      "name": "Frappe Ailé",
+      "prepared": true,
+      "image": "/assets/nyx/frappe-ailé-20260502122031481304-86e32c94.png",
+      "description": "Attaquez une créature à 3m avec votre aile et renversez-la au sol.",
+      "value": {
+        "main": "Dégâts de base",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "club",
+        "base": 10,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 4
+      },
+      "incantation": "Agilité",
+      "save": "Athlétisme (Aucun effet)",
+      "usage": "Bonus action"
+    },
+    {
+      "name": "Bond Ailé",
+      "prepared": true,
+      "image": "/assets/nyx/bond-ailé-20260502122033763245-ed4dec37.png",
+      "description": "En réaction, bondissez de 10m pour esquiver une attaque ciblée. Si l’attaque est une AOE, vous ne subissez que la moitié des dégâts.",
+      "value": {
+        "main": "10m",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "heart",
+        "base": 16,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 10
+      },
+      "incantation": "Agilité",
+      "save": "X",
+      "usage": "Réaction"
+    },
+    {
+      "name": "Marque de l’assassin",
+      "prepared": true,
+      "image": "/assets/nyx/marque-de-l-assassin-20260502122036764101-12487ea5.png",
+      "description": "En bonus action, marquez une créature. Vous obtenez immédiatement, sans jet, une analyse de la cible ainsi qu’une information sur son seuil de PV. Si la cible meurt, vous gagnez immédiatement une action gratuite.",
+      "value": {
+        "main": "X",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 10,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 4
+      },
+      "incantation": "Esprit",
+      "save": "X",
+      "usage": "Bonus action"
+    }
+  ],
+  "notes": "",
+  "abilityControls": {
+    "cardMin": "",
+    "cardMax": "",
+    "knownAbilities": "",
+    "maxPreparedAbilities": "",
+    "colorReductions": {
+      "spade": 0,
+      "heart": 0,
+      "diamond": 0,
+      "club": 0
+    }
+  },
+  "weaponMasteries": [],
+  "elementalMasteries": [],
+  "equipment": {
+    "casque": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "volonte": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "plastron": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "armure": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "gantelets": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "initiative": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "bottes": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "vitesse": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "anneau": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "amulette": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "cape": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    }
+  },
+  "inventoryItems": [],
+  "feats": [
+    {
+      "title": "Maîtrise Ambidextre ",
+      "description": "Si vous dual-wieldez, vous ajoutez 2× votre mod Agilité à votre valeur de Parade."
+    }
+  ]
+}

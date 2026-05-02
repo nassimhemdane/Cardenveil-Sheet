@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "id": "mimyr",
+  "templateId": "cardenveil-standard",
+  "createdAt": "2026-05-02T00:00:00+00:00",
+  "updatedAt": "2026-05-02T11:20:40.451655+00:00",
+  "identity": {
+    "nom": "Mimyr",
+    "joueur": "",
+    "niveau": "",
+    "race": "Aasimar",
+    "alignement": "Chaotique Bon",
+    "age": "38",
+    "taille": "1m78",
+    "poids": "75kg",
+    "yeux": "Jaunes",
+    "peau": "Blanche",
+    "cheveux": "Gris"
+  },
+  "portrait": "/assets/mimyr/extra-4-png-20260502115858037411-fd3eb339.png",
+  "stats": {
+    "force": 16,
+    "agilite": 8,
+    "esprit": 16,
+    "social": 6
+  },
+  "progression": {
+    "xpDepenses": 0,
+    "xpDisponibles": 0
+  },
+  "derived": {
+    "pvMax": 70,
+    "bonusPv": "",
+    "pvActuels": "",
+    "pvTemporaires": "",
+    "mouvement": 9,
+    "initiative": -2,
+    "perceptionPassive": 13,
+    "seuilSauvegarde": "",
+    "seuilMiss": "2",
+    "canalisation": "",
+    "bonusAttaque": "",
+    "inspiration": "",
+    "fatigue": "",
+    "mort": ""
+  },
+  "defense": {
+    "parade": "",
+    "armure": "",
+    "deflexion": "",
+    "gardeBonus": "",
+    "bonus": ""
+  },
+  "resources": {
+    "or": "",
+    "rations": "",
+    "cartesEtTokens": ""
+  },
+  "skills": {
+    "athletisme": {
+      "trained": true,
+      "bonus": 3
+    },
+    "resilience": {
+      "trained": false,
+      "bonus": 0
+    },
+    "acrobaties": {
+      "trained": false,
+      "bonus": -1
+    },
+    "discretion": {
+      "trained": false,
+      "bonus": 0
+    },
+    "escamotage": {
+      "trained": false,
+      "bonus": 0
+    },
+    "arcanes": {
+      "trained": true,
+      "bonus": 3
+    },
+    "investigation": {
+      "trained": true,
+      "bonus": 0
+    },
+    "perception": {
+      "trained": false,
+      "bonus": 0
+    },
+    "culture": {
+      "trained": false,
+      "bonus": 0
+    },
+    "survie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "persuasion": {
+      "trained": false,
+      "bonus": -2
+    },
+    "tromperie": {
+      "trained": false,
+      "bonus": 0
+    },
+    "intimidation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "representation": {
+      "trained": false,
+      "bonus": 0
+    },
+    "perspicacite": {
+      "trained": false,
+      "bonus": 0
+    },
+    "dressage": {
+      "trained": false,
+      "bonus": 0
+    }
+  },
+  "weapons": [
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    },
+    {
+      "nom": "",
+      "de": "",
+      "forceAgi": "",
+      "critique": "",
+      "avantage": "",
+      "bonus": "",
+      "perfection": "",
+      "notes": ""
+    }
+  ],
+  "inventory": {
+    "equipement": "",
+    "inventaire": "",
+    "totem": "Vous utilisez votre réaction pour copier une capacité : vous pouvez soit l’enregistrer en bloquant une carte à la moitié de son coût (en couleur neutre), soit l’utiliser immédiatement en payant son coût total (en couleur neutre). Si la cible est alliée, la copie est directe. Si la cible est ennemie, vous devez effectuer un jet d’Investigation pour la copier ; le coût ainsi que les valeurs de la capacité dépendent du résultat."
+  },
+  "totem": {
+    "nom": "Totem",
+    "description": "Vous utilisez votre réaction pour copier une capacité : vous pouvez soit l’enregistrer en bloquant une carte à la moitié de son coût (en couleur neutre), soit l’utiliser immédiatement en payant son coût total (en couleur neutre). Si la cible est alliée, la copie est directe. Si la cible est ennemie, vous devez effectuer un jet d’Investigation pour la copier ; le coût ainsi que les valeurs de la capacité dépendent du résultat.",
+    "image": "/assets/mimyr/totem-20260502115854409904-0a1f9ccc.png"
+  },
+  "narrative": {
+    "background": "Soldat enrolé de force.",
+    "objectif": "Créer une magie qui lui est propre.",
+    "liens": "",
+    "traitsSpeciaux": [
+      "Piochez une carte cristallisée cœur quand vous utilisez un token.",
+      "Résistance aux dégâts radiants (Aasimar)",
+      "Réflexe du Loup : Si vous ratez une attaque, vous pouvez en faire une seconde sans modificateur (1 fois par round)."
+    ],
+    "personnalite": "",
+    "reputation": "Est connu comme un déserteur.",
+    "education": "Éducation sur les fondamentaux de la magie.",
+    "croyances": "A été forcé de faire la guerre, a vu ses camarades mourir, méprise le concept de guerre.",
+    "cicatrices": "",
+    "pulsion": "",
+    "maniesEtTics": "Ne regarde jamais les gens quand il leur parle.",
+    "instinct": ""
+  },
+  "actions": [],
+  "reactions": [],
+  "tokens": [],
+  "capacities": [
+    {
+      "name": "Ancrage Polaire",
+      "prepared": false,
+      "image": "/assets/mimyr/ancrage-polaire-20260502115809198824-1f71b48c.png",
+      "description": "Enfoncez votre arme dans le sol. Attirez ou repoussez toutes les créatures à 5m. Attirées, elles arrivent dans votre zone de contrôle. Repoussées, elles sont envoyées à 5m de vous.",
+      "value": {
+        "main": "X",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "club",
+        "base": 12,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 6
+      },
+      "incantation": "Force",
+      "save": "Athlétisme (Aucun effet)",
+      "usage": "Bonus action"
+    },
+    {
+      "name": "Cercle de Ripostes",
+      "prepared": false,
+      "image": "/assets/mimyr/cercle-de-ripostes-20260502115815050830-103ef81f.png",
+      "description": "Concentrez-vous. Dans votre zone de contrôle, vous gagnez +1 réaction par ennemi présent, jusqu’à un maximum de 1 + seuil de multiplicativité.",
+      "value": {
+        "main": "X",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 12,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 6
+      },
+      "incantation": "Esprit",
+      "save": "X",
+      "usage": "Bonus action / Concentration"
+    },
+    {
+      "name": "Onde de Grâce",
+      "prepared": false,
+      "image": "/assets/mimyr/onde-de-grâce-20260502115825318453-4392f535.png",
+      "description": "Soignez toutes les créatures alliées dans votre zone de contrôle.",
+      "value": {
+        "main": "1.5 Mod Esprit D6 Soin",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "heart",
+        "base": 13,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 7
+      },
+      "incantation": "Esprit",
+      "save": "X",
+      "usage": "Action"
+    },
+    {
+      "name": "Lame Radiante",
+      "prepared": false,
+      "image": "/assets/mimyr/lame-radiante-20260502115829516080-b1d9274a.png",
+      "description": "Enchantez une arme. Elle devient radiante, gagne + Mod Esprit aux dégâts, ignore armure et parade, et purifie les états positifs comme négatifs.",
+      "value": {
+        "main": "+ Mod Esprit",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "heart",
+        "base": 11,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 5
+      },
+      "incantation": "Esprit",
+      "save": "X",
+      "usage": "Bonus action"
+    },
+    {
+      "name": "Chute écrasante",
+      "prepared": false,
+      "image": "/assets/mimyr/chute-écrasante-20260502115833744962-762b3c2d.png",
+      "description": "En bonus action, bondissez jusqu’à 10m s’il y a une cible, mettez-la à terre.",
+      "value": {
+        "main": "Dégâts de base",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 11,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 5
+      },
+      "incantation": "Force",
+      "save": "Athlétisme (Aucun effet)",
+      "usage": "Bonus action"
+    },
+    {
+      "name": "Cône de Jugement",
+      "prepared": false,
+      "image": "/assets/mimyr/cône-de-jugement-20260502115838225960-1d30dbba.png",
+      "description": "Faites une attaque en cône de 5m avec votre arme. Infligez un nombre de dégâts de base égal au nombre d’ennemis dans le cône, limité à 2 + (1 + seuil de multiplicativité)/2.",
+      "value": {
+        "main": "X Dégâts de base",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "diamond",
+        "base": 15,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 9
+      },
+      "incantation": "Force",
+      "save": "Acrobaties (Moitié dégâts)",
+      "usage": "Action"
+    },
+    {
+      "name": "Éclat Aveuglant",
+      "prepared": false,
+      "image": "/assets/mimyr/éclat-aveuglant-20260502115847450597-64a03726.png",
+      "description": "En bonus action, libérez une lumière brutale dans votre zone de contrôle. Les ennemis touchés sont aveuglés.",
+      "value": {
+        "main": "X",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "club",
+        "base": 11,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 5
+      },
+      "incantation": "Esprit",
+      "save": "Résilience (Aucun effet)",
+      "usage": "Bonus action"
+    },
+    {
+      "name": "Boule de Lumière",
+      "prepared": false,
+      "image": "/assets/mimyr/boule-de-lumière-20260502115842271854-823ee057.png",
+      "description": "Vous utilisez votre action pour vous transformer en sphère de lumière inciblable jusqu’à votre prochain tour. À la fin, vous gagnez double mouvement et aucune attaque d’opportunité. Vous pouvez mettre fin à l’effet en réaction (sans bonus). En réaction, vous pouvez aussi appliquer cet effet à vous-même ou à une créature alliée dans votre zone de contrôle : la cible devient inciblable, perd son action, et si ce n’est pas vous, elle ne gagne aucun bonus.",
+      "value": {
+        "main": "2x mouvement",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "heart",
+        "base": 15,
+        "incantationReduction": 6,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 9
+      },
+      "incantation": "Esprit",
+      "save": "X",
+      "usage": "Action / Réaction"
+    }
+  ],
+  "notes": "",
+  "abilityControls": {
+    "cardMin": "",
+    "cardMax": "",
+    "knownAbilities": "",
+    "maxPreparedAbilities": "",
+    "colorReductions": {
+      "spade": 0,
+      "heart": 0,
+      "diamond": 0,
+      "club": 0
+    }
+  },
+  "weaponMasteries": [],
+  "elementalMasteries": [],
+  "equipment": {
+    "casque": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "volonte": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "plastron": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "armure": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "gantelets": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "initiative": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "bottes": {
+      "nom": "",
+      "raretePrix": "",
+      "deflexion": "",
+      "vitesse": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "anneau": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "amulette": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    },
+    "cape": {
+      "nom": "",
+      "raretePrix": "",
+      "enchantement": "",
+      "description": ""
+    }
+  },
+  "inventoryItems": [],
+  "feats": []
+}
