@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiche Cardenveil</title>
+  <link rel="stylesheet" href="static/css/sheet.css">
+</head>
+<body>
+  <header class="app-bar">
+    <div>
+      <p class="eyebrow">Cardenveil</p>
+      <h1>Fiche éditable</h1>
+    </div>
+    <nav class="toolbar" aria-label="Actions">
+      <label class="mode-switcher" for="viewModeSelect">
+        <span>Mode</span>
+        <select id="viewModeSelect" title="Mode d'affichage">
+          <option value="edit">Édition</option>
+          <option value="view">Vue</option>
+        </select>
+      </label>
+      <select id="characterSelect" title="Personnage sauvegardé"></select>
+      <button id="newCharacter" type="button">Nouveau</button>
+      <button id="deleteCharacter" type="button">Supprimer</button>
+      <button id="saveCharacter" type="button">Sauvegarder</button>
+      <button id="exportJson" type="button">Sauvegarder ZIP</button>
+      <button id="extractPdfImages" type="button" hidden>Extraire images PDF</button>
+      <label class="file-button is-disabled" hidden>
+        Importer PDF
+        <input id="importPdf" type="file" accept=".pdf,application/pdf">
+      </label>
+      <label class="file-button">
+        Importer fiche
+        <input id="importJson" type="file" accept=".zip,.json,.rpsheet,.rpsheet.json,application/json,application/zip">
+      </label>
+      <button id="printSheet" type="button" class="is-disabled">PDF / imprimer</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="status-line">
+      <span id="saveStatus">Chargement...</span>
+      <span id="templateName"></span>
+    </section>
+
+    <section id="sheetRoot" class="sheet-root" aria-live="polite"></section>
+  </main>
+
+  <script src="static/js/template-data.js"></script>
+  <script src="static/js/browser-storage.js"></script>
+  <script src="static/js/editor.js"></script>
+</body>
+</html>
+
