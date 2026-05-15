@@ -3,7 +3,7 @@
   "id": "nouveau-personnage",
   "templateId": "cardenveil-standard",
   "createdAt": "2026-04-29T17:39:47.782580+00:00",
-  "updatedAt": "2026-05-02T11:21:21.763600+00:00",
+  "updatedAt": "2026-05-13T10:14:04.306671+00:00",
   "identity": {
     "nom": "Default",
     "joueur": "Nassim",
@@ -305,10 +305,274 @@
       "incantation": "",
       "save": "",
       "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img7.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img8.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img9.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img10.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img11.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img12.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img13.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img14.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img15.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img16.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img17.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
+    },
+    {
+      "name": "",
+      "prepared": false,
+      "image": "/assets/nouveau-personnage/img18.png",
+      "description": "",
+      "value": {
+        "main": "",
+        "bonus": ""
+      },
+      "cost": {
+        "color": "spade",
+        "base": 0,
+        "incantationReduction": 0,
+        "colorReduction": 0,
+        "awakeningReduction": 0,
+        "weaponMasteryReduction": 0,
+        "total": 0
+      },
+      "incantation": "",
+      "save": "",
+      "usage": ""
     }
   ],
   "notes": "",
-  "portrait": "/assets/nouveau-personnage/chatgpt-image-apr-26-2026-03_25_03-pm-png-20260502132113881061-63f9205a.png",
+  "portrait": "/assets/nouveau-personnage/portrait.png",
   "progression": {
     "xpDepenses": 10,
     "xpDisponibles": 0

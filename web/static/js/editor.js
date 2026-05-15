@@ -60,6 +60,176 @@ const WEAPON_FAMILY_SUMMARIES = {
   "Armes uniques": "Comportement spécial selon l'arme."
 };
 
+const GUIDE_TITLE_COLORS = {
+  force: "guide-force",
+  agilite: "guide-agilite",
+  esprit: "guide-esprit",
+  social: "guide-social"
+};
+
+const GUIDE_SECTIONS = [
+  {
+    title: "Bonus actions",
+    entries: [
+      {
+        title: "Attaque secondaire",
+        type: "force",
+        description: "• Une seconde attaque en mêlée\n• Sans modificateur aux dégâts"
+      },
+      {
+        title: "Poussée",
+        type: "force",
+        description: "• Repoussez une créature de 5 m\n• Contestation de vos jets d’Athlétisme"
+      },
+      {
+        title: "Ruée",
+        type: "agilite",
+        description: "• Augmentez votre vitesse de déplacement de moitié\n• Vous permet un troisième mouvement durant le round"
+      },
+      {
+        title: "Planque",
+        type: "agilite",
+        description: "• Si vous êtes hors de vue ou obscurci, cachez-vous\n• Faites un jet de Discrétion contre la Perception ennemie\n• Au début de chaque round et chaque fois que vous entrez dans une ligne de vue, refaites un jet\n• Toute action hostile vous dévoile\n• Une action non hostile exige un nouveau jet pour rester planqué"
+      },
+      {
+        title: "Consommable",
+        type: "agilite",
+        description: "• Boire une potion\n• Utiliser un parchemin\n• Ou un consommable du même type"
+      },
+      {
+        title: "Échange d’équipement",
+        type: "agilite",
+        description: "• Alterner entre deux armes ou équipements"
+      },
+      {
+        title: "Stabilisation",
+        type: "agilite",
+        description: "• Mettez fin à une condition dont la sortie est possible\n• Sur un allié ou sur vous si la condition le permet\n• Exemples : À terre, Immobilisé, Endormi, Inconscient\n• Certaines conditions peuvent exiger un jet contextuel selon la situation"
+      },
+      {
+        title: "Analyse",
+        type: "esprit",
+        description: "• Faites un jet d’Investigation : DC 10 + mod. Agilité\n• Sur une créature adverse\n• Découvre une résistance, une immunité, une vulnérabilité\n• Ou un détail contextuel"
+      },
+      {
+        title: "Imprégnation",
+        type: "esprit",
+        description: "• Imprégnez une arme ou un projectile avec un consommable\n• Si une source élémentaire est à portée (feu, poison, etc.), utilisez-la pour imprégner votre arme\n• Ajoutez mod. Survie en dégâts élémentaires à votre prochaine attaque"
+      },
+      {
+        title: "Canalisation",
+        type: "esprit",
+        description: "• Canalisez votre catalyseur et activez son bonus de couleur pour ce round et le suivant\n• Les capacités de la couleur correspondante voient leur coût réduit de votre modificateur d’Esprit + le bonus du catalyseur\n• Si vous maniez deux catalyseurs à une main, vous pouvez les canaliser simultanément pour combiner leurs couleurs\n• Le catalyseur s’entoure alors d’une aura de son type de dégâts\n• En canalisant, vous donnez avantage à vos jets d’attaques avec le catalyseur et de valeur brute de capacités"
+      },
+      {
+        title: "Provocation",
+        type: "social",
+        description: "• Provoquez une créature\n• Faites un jet de Représentation contre sa Perspicacité\n• La créature provoquée ne peut cibler que vous jusqu’à la fin du round"
+      },
+      {
+        title: "Flatterie",
+        type: "social",
+        description: "• Faites un jet de Tromperie contre la Perspicacité de l’allié\n• En cas de réussite, l’allié gagne + mod. Social aux dégâts de sa prochaine attaque"
+      }
+    ]
+  },
+  {
+    title: "Réactions",
+    entries: [
+      {
+        title: "Attaque d’opportunité",
+        type: "force",
+        description: "• Si un ennemi quitte votre zone de contrôle\n• S’il lance une capacité à distance\n• Ou s’il est attaqué par un allié en mêlée\n• Vous pouvez l’attaquer\n• Si vous jouez dual wield, attaquez avec vos deux armes"
+      },
+      {
+        title: "Parade",
+        type: "force",
+        description: "• Parez avec votre bouclier ou vos armes\n• Vous réduisez les dégâts subits avant réduction d’armure\n• Avec bouclier : déflexion de l’armure + parade du bouclier + mod. Force\n• Sans bouclier : parade de l’arme = valeur maximale du dé de votre arme / 2 + mod. Agilité\n• Exemple : 3 pour 1d6\n• Si vous annulez la totalité des dégâts, vous activez Feintre"
+      },
+      {
+        title: "Bastion",
+        type: "force",
+        description: "• Interceptez une attaque ciblée visant un allié\n• Jet d’Acrobaties = 3 + 2 × distance en mètres"
+      },
+      {
+        title: "Soutien",
+        type: "force",
+        description: "• Lorsqu’un allié dans votre zone de contrôle attaque\n• Offrez-lui avantage à son jet d’attaque"
+      },
+      {
+        title: "Ciblage",
+        type: "agilite",
+        description: "• Lorsqu’un ennemi agit (attaque, mouvement, etc.)\n• Utilisez votre réaction pour vous focaliser sur lui\n• Analysez ses mouvements\n• Vous vous octroyez avantage pour un tir contre lui au prochain tour"
+      },
+      {
+        title: "Précipitation",
+        type: "agilite",
+        description: "• Utilisez votre réaction pour précipiter votre tour\n• Faites un jet d’initiative avec avantage pendant l’action d’une autre créature\n• Si votre résultat dépasse son initiative, vous pouvez jouer immédiatement votre Action et/ou Bonus Action\n• Vos deux actions sont résolues simultanément selon la décision du MJ\n• Si vous avez déjà joué ce round, faites un jet d’initiative avec avantage contre 10 + l’initiative de la créature actuelle\n• En cas de réussite, vous pouvez jouer votre Action et/ou Bonus Action du round suivant immédiatement"
+      },
+      {
+        title: "Harmonisation",
+        type: "esprit",
+        description: "• Lorsqu’une créature lance une capacité utilisant l’Esprit\n• Accentuer : + mod. Esprit au jet de valeur brute de la capacité et au seuil de sauvegarde\n• Atténuer : - mod. Esprit aux dégâts directs et au seuil de sauvegarde"
+      },
+      {
+        title: "Altération",
+        type: "esprit",
+        description: "• Lorsque vous utilisez une capacité\n• Vous pouvez ajuster son effet ou sa portée\n• Sans augmenter sa puissance\n• Peut potentiellement activer une combinaison élémentaire"
+      },
+      {
+        title: "Dissuasion",
+        type: "social",
+        description: "• Faites un jet d’Intimidation contre la Perspicacité de l’ennemi\n• Donnez-lui désavantage à son attaque en mêlée"
+      },
+      {
+        title: "Coordination",
+        type: "social",
+        description: "• En réaction, choisissez un allié à 2 × mod. Persuasion m\n• Cet allié peut immédiatement utiliser une réaction\n• Ou refaire son jet de sauvegarde contre la capacité qui le vise"
+      }
+    ]
+  },
+  {
+    title: "Actions",
+    entries: [
+      {
+        title: "Attaquer",
+        type: "force",
+        description: "• Attaquez votre cible"
+      },
+      {
+        title: "Esquive",
+        type: "agilite",
+        description: "• Désavantage aux attaques contre vous\n• Pas d’attaques d’opportunité"
+      }
+    ]
+  },
+  {
+    title: "Tokens",
+    entries: [
+      {
+        title: "Tokens de Force",
+        type: "force",
+        description: "• Carte : piocher une carte\n• Attaque : double frappe"
+      },
+      {
+        title: "Tokens d’Agilité",
+        type: "agilite",
+        description: "• Carte : piocher une couleur précise\n• Attaque : jusqu’à 3 cibles"
+      },
+      {
+        title: "Tokens d’Esprit",
+        type: "esprit",
+        description: "• Carte : stocker / cristalliser une carte\n• Attaque : réverbération, 2 × dégâts au prochain tour"
+      },
+      {
+        title: "Tokens de Social",
+        type: "social",
+        description: "• Carte : échanger une carte avec un allié\n• Attaque : marque qui réplique vos dégâts"
+      }
+    ]
+  }
+];
+
 const WEAPON_DATABASE = {
   "Épées droites": [
     { name: "Dague", damage: "1d4", attributes: ["Finesse", "Légère", "Lancer", "Garde"] },
@@ -123,6 +293,11 @@ function isEditMode() {
 
 function modifier(score) {
   return Math.floor((Number(score || 0) - 10) / 2);
+}
+
+function signedNumber(value) {
+  const numeric = toNumber(value, 0);
+  return `${numeric >= 0 ? "+" : "-"}${Math.abs(numeric)}`;
 }
 
 function getPath(obj, path, fallback = "") {
@@ -346,11 +521,115 @@ function normalizeInventoryItem(item = {}) {
 }
 
 function normalizeInventoryEquipmentData(slot, source = {}) {
+  const slotLabel = EQUIPMENT_SLOT_LABELS[slot] || "";
+  const defaults = {
+    casque: { nom: slotLabel, raretePrix: "", deflexion: "0", volonte: "1", enchantement: "", description: "" },
+    plastron: { nom: slotLabel, raretePrix: "", deflexion: "1", armure: "1", enchantement: "", description: "" },
+    gantelets: { nom: slotLabel, raretePrix: "", deflexion: "0", initiative: "1", enchantement: "", description: "" },
+    bottes: { nom: slotLabel, raretePrix: "", deflexion: "0", vitesse: "1", enchantement: "", description: "" },
+    anneau: { nom: slotLabel, raretePrix: "", enchantement: "", description: "" },
+    amulette: { nom: slotLabel, raretePrix: "", enchantement: "", description: "" },
+    cape: { nom: slotLabel, raretePrix: "", enchantement: "", description: "" }
+  };
+  const base = defaults[slot] || {};
   const data = {};
   for (const fieldName of EQUIPMENT_SLOT_FIELDS[slot] || []) {
-    data[fieldName] = source[fieldName] || "";
+    data[fieldName] = source[fieldName] ?? base[fieldName] ?? "";
   }
   return data;
+}
+
+function parseWeaponDieFaces(damage) {
+  const match = String(damage || "").match(/d\s*(\d+)/i);
+  return match ? toNumber(match[1], 0) : 0;
+}
+
+function computeParadeFromDamage(damage) {
+  const faces = parseWeaponDieFaces(damage);
+  return faces ? String(Math.floor(faces / 2)) : "";
+}
+
+function getEquippedWeaponModifier(attributesText) {
+  const attributes = String(attributesText || "").toLowerCase();
+  if (attributes.includes("catalyseur")) return modifier(getPath(state.character, "stats.esprit", 10));
+  if (attributes.includes("finesse")) return modifier(getPath(state.character, "stats.agilite", 10));
+  return modifier(getPath(state.character, "stats.force", 10));
+}
+
+function normalizeNotesWidgetSettings() {
+  const notesWidget = state.settings?.notesWidget || {};
+  return {
+    open: Boolean(notesWidget.open),
+    x: Number.isFinite(Number(notesWidget.x)) ? Number(notesWidget.x) : 24,
+    y: Number.isFinite(Number(notesWidget.y)) ? Number(notesWidget.y) : 120
+  };
+}
+
+function normalizeGuideWidgetSettings() {
+  const guideWidget = state.settings?.guideWidget || {};
+  const defaultX = Math.max(24, (window.innerWidth || 1440) - 128);
+  return {
+    open: Boolean(guideWidget.open),
+    x: Number.isFinite(Number(guideWidget.x)) ? Number(guideWidget.x) : defaultX,
+    y: Number.isFinite(Number(guideWidget.y)) ? Number(guideWidget.y) : 182
+  };
+}
+
+function saveSettingsSoon() {
+  Storage.saveSettings(state.settings || {}).catch((error) => console.error("Impossible de sauvegarder les réglages", error));
+}
+
+function syncNotesViews(value, sourceElement = null) {
+  document.querySelectorAll('[data-notes-sync="true"]').forEach((element) => {
+    if (element === sourceElement) return;
+    element.value = value || "";
+  });
+}
+
+function widgetPanelSideClass(x) {
+  return x > ((window.innerWidth || 1440) / 2) ? "panel-left" : "panel-right";
+}
+
+function recalculateDerivedValues() {
+  const force = toNumber(getPath(state.character, "stats.force", 10), 10);
+  const agilite = toNumber(getPath(state.character, "stats.agilite", 10), 10);
+  const esprit = toNumber(getPath(state.character, "stats.esprit", 10), 10);
+  const social = toNumber(getPath(state.character, "stats.social", 10), 10);
+  const resilience = toNumber(getPath(state.character, "skills.resilience.bonus", 0), 0);
+  const casqueDeflexion = toNumber(getPath(state.character, "equipment.casque.deflexion", 0), 0);
+  const ganteletsDeflexion = toNumber(getPath(state.character, "equipment.gantelets.deflexion", 0), 0);
+  const plastronDeflexion = toNumber(getPath(state.character, "equipment.plastron.deflexion", 0), 0);
+  const bottesDeflexion = toNumber(getPath(state.character, "equipment.bottes.deflexion", 0), 0);
+
+  const modForce = modifier(force);
+  const modAgilite = modifier(agilite);
+  const modEsprit = modifier(esprit);
+  const modSocial = modifier(social);
+
+  const pvMax = Math.round(30 + (2.5 * force));
+  const mouvementTotal = Math.floor(5 + (agilite / 2));
+  const initiativeTotal = agilite - 10;
+  const knownAbilities = Math.floor(esprit / 2);
+  const missThreshold = Math.max(1, -(1 + modAgilite));
+  const deflexionTotale = casqueDeflexion + ganteletsDeflexion + plastronDeflexion + bottesDeflexion;
+
+  state.character.derived = state.character.derived || {};
+  state.character.abilityControls = state.character.abilityControls || {};
+  state.character.resources = state.character.resources || {};
+  state.character.resources.tokens = state.character.resources.tokens || {};
+
+  setPath(state.character, "derived.pvMax", pvMax);
+  setPath(state.character, "derived.mouvement", mouvementTotal);
+  setPath(state.character, "derived.initiative", initiativeTotal);
+  setPath(state.character, "derived.seuilMiss", missThreshold);
+  setPath(state.character, "derived.canalisation", modEsprit);
+  setPath(state.character, "derived.volonte", resilience);
+  setPath(state.character, "defense.deflexion", deflexionTotale);
+  state.character.abilityControls.knownAbilities = String(knownAbilities);
+  state.character.resources.tokens.force = Math.max(0, 1 + modForce);
+  state.character.resources.tokens.agilite = Math.max(0, 1 + modAgilite);
+  state.character.resources.tokens.esprit = Math.max(0, 1 + modEsprit);
+  state.character.resources.tokens.social = Math.max(0, 1 + modSocial);
 }
 
 function imageSrcWithVersion(path) {
@@ -369,11 +648,27 @@ function field(path, label, type = "text", options = {}) {
   labelEl.textContent = label;
   const input = document.createElement(type === "textarea" ? "textarea" : "input");
   input.id = id;
+  input.dataset.path = path;
   if (type !== "textarea") input.type = type;
   input.value = getPath(state.character, path, "");
+  if (options.readOnly) {
+    input.dataset.locked = "true";
+    input.readOnly = true;
+    input.tabIndex = -1;
+  }
+  if (path === "notes") {
+    input.dataset.notesSync = "true";
+  }
   input.addEventListener("input", () => {
+    if (options.readOnly) {
+      input.value = getPath(state.character, path, "");
+      return;
+    }
     const value = input.type === "number" ? Number(input.value || 0) : input.value;
     setPath(state.character, path, value);
+    if (path === "notes") {
+      syncNotesViews(value, input);
+    }
     recalculate();
     scheduleSave();
   });
@@ -391,6 +686,7 @@ function module(title, span = 4) {
 }
 
 function render() {
+  recalculateDerivedValues();
   $("#templateName").textContent = state.template?.name || "";
   const root = $("#sheetRoot");
   root.innerHTML = "";
@@ -412,6 +708,8 @@ function render() {
   systemsPage.append(renderEquipmentSection(), renderInventorySection());
   root.append(systemsPage);
 
+  renderFloatingNotesWidget();
+  renderFloatingGuideWidget();
   recalculate();
   applyModeToSheet();
 }
@@ -422,7 +720,7 @@ function applyModeToSheet() {
   if (!root) return;
 
   root.querySelectorAll("textarea").forEach((textarea) => {
-    textarea.readOnly = !isEditMode();
+    textarea.readOnly = textarea.dataset.locked === "true" || !isEditMode();
   });
 
   root.querySelectorAll("select, button").forEach((element) => {
@@ -433,9 +731,15 @@ function applyModeToSheet() {
     if (["checkbox", "radio", "file"].includes(input.type)) {
       input.disabled = !isEditMode();
     } else {
-      input.readOnly = !isEditMode();
+      input.readOnly = input.dataset.locked === "true" || !isEditMode();
     }
   });
+
+  const floatingNotes = document.getElementById("floatingNotesWidget");
+  const floatingNotesInput = floatingNotes?.querySelector("textarea");
+  if (floatingNotesInput) {
+    floatingNotesInput.readOnly = !isEditMode();
+  }
 }
 
 function renderGenericPage(page) {
@@ -623,17 +927,17 @@ function renderCombat() {
   const grid = document.createElement("div");
   grid.className = "combat-grid";
   [
-    ["derived.pvMax", "Max PV", "number"],
+    ["derived.pvMax", "Max PV", "number", true],
     ["derived.bonusPv", "Bonus PV"],
     ["derived.pvActuels", "PV actuels", "number"],
     ["derived.pvTemporaires", "PV temporaires", "number"],
-    ["derived.initiative", "Initiative", "number"],
-    ["derived.mouvement", "Mouvement", "number"],
-    ["derived.seuilMiss", "Seuil de miss"],
+    ["derived.initiative", "Initiative", "number", true],
+    ["derived.mouvement", "Mouvement", "number", true],
+    ["derived.seuilMiss", "Seuil de miss", "text", true],
     ["derived.bonusAttaque", "Bns. attaque"],
     ["derived.canalisation", "Canalisation"],
-    ["derived.seuilSauvegarde", "Seuil sauvegarde"]
-  ].forEach(([path, label, type]) => grid.append(field(path, label, type || "text")));
+    ["derived.volonte", "Volonté", "number", true]
+  ].forEach(([path, label, type, readOnly]) => grid.append(field(path, label, type || "text", { readOnly })));
   m.append(grid);
   return m;
 }
@@ -645,23 +949,33 @@ function renderDefenseBlock() {
   [
     ["defense.parade", "Parade"],
     ["defense.armure", "Armure"],
-    ["defense.deflexion", "Déflexion"],
+    ["defense.deflexion", "Déflexion", "text", true],
     ["defense.gardeBonus", "Garde"],
     ["defense.bonus", "Bonus"],
     ["derived.fatigue", "Fatigue"],
     ["derived.mort", "Mort"]
-  ].forEach(([path, label]) => grid.append(field(path, label)));
+  ].forEach(([path, label, type, readOnly]) => grid.append(field(path, label, type || "text", { readOnly })));
   m.append(grid);
   return m;
 }
 
-function combatField(path, label, className = "", type = "text") {
+function combatField(path, label, className = "", type = "text", options = {}) {
   const wrap = document.createElement("div");
   wrap.className = `combat-field ${className}`;
   const input = document.createElement("input");
   input.type = type;
+  input.dataset.path = path;
   input.value = getPath(state.character, path, "");
+  if (options.readOnly) {
+    input.dataset.locked = "true";
+    input.readOnly = true;
+    input.tabIndex = -1;
+  }
   input.addEventListener("input", () => {
+    if (options.readOnly) {
+      input.value = getPath(state.character, path, "");
+      return;
+    }
     const value = input.type === "number" ? Number(input.value || 0) : input.value;
     setPath(state.character, path, value);
     scheduleSave();
@@ -674,7 +988,7 @@ function combatField(path, label, className = "", type = "text") {
   return wrap;
 }
 
-function dualCombatField(leftPath, leftLabel, rightPath, rightLabel, className = "") {
+function derivedSplitField(valuePath, valueLabel, bonusPath, bonusLabel, className = "") {
   const wrap = document.createElement("div");
   wrap.className = `combat-field dual-combat-field ${className}`;
 
@@ -682,8 +996,61 @@ function dualCombatField(leftPath, leftLabel, rightPath, rightLabel, className =
   left.className = "dual-side";
   const leftInput = document.createElement("input");
   leftInput.type = "number";
+  leftInput.dataset.path = valuePath;
+  leftInput.dataset.locked = "true";
+  leftInput.readOnly = true;
+  leftInput.tabIndex = -1;
+  leftInput.value = getPath(state.character, valuePath, "");
+  const leftRule = document.createElement("span");
+  leftRule.className = "combat-rule";
+  const leftLabelEl = document.createElement("label");
+  leftLabelEl.textContent = valueLabel;
+  left.append(leftInput, leftRule, leftLabelEl);
+
+  const divider = document.createElement("span");
+  divider.className = "dual-divider";
+  divider.textContent = "|";
+
+  const right = document.createElement("div");
+  right.className = "dual-side";
+  const rightInput = document.createElement("input");
+  rightInput.type = "number";
+  rightInput.dataset.path = bonusPath;
+  rightInput.value = getPath(state.character, bonusPath, "");
+  rightInput.addEventListener("input", () => {
+    setPath(state.character, bonusPath, rightInput.value);
+    scheduleSave();
+  });
+  const rightRule = document.createElement("span");
+  rightRule.className = "combat-rule";
+  const rightLabelEl = document.createElement("label");
+  rightLabelEl.textContent = bonusLabel;
+  right.append(rightInput, rightRule, rightLabelEl);
+
+  wrap.append(left, divider, right);
+  return wrap;
+}
+
+function dualCombatField(leftPath, leftLabel, rightPath, rightLabel, className = "", options = {}) {
+  const wrap = document.createElement("div");
+  wrap.className = `combat-field dual-combat-field ${className}`;
+
+  const left = document.createElement("div");
+  left.className = "dual-side";
+  const leftInput = document.createElement("input");
+  leftInput.type = "number";
+  leftInput.dataset.path = leftPath;
   leftInput.value = getPath(state.character, leftPath, "");
+  if (options.leftReadOnly) {
+    leftInput.dataset.locked = "true";
+    leftInput.readOnly = true;
+    leftInput.tabIndex = -1;
+  }
   leftInput.addEventListener("input", () => {
+    if (options.leftReadOnly) {
+      leftInput.value = getPath(state.character, leftPath, "");
+      return;
+    }
     setPath(state.character, leftPath, Number(leftInput.value || 0));
     scheduleSave();
   });
@@ -701,8 +1068,18 @@ function dualCombatField(leftPath, leftLabel, rightPath, rightLabel, className =
   right.className = "dual-side";
   const rightInput = document.createElement("input");
   rightInput.type = "number";
+  rightInput.dataset.path = rightPath;
   rightInput.value = getPath(state.character, rightPath, "");
+  if (options.rightReadOnly) {
+    rightInput.dataset.locked = "true";
+    rightInput.readOnly = true;
+    rightInput.tabIndex = -1;
+  }
   rightInput.addEventListener("input", () => {
+    if (options.rightReadOnly) {
+      rightInput.value = getPath(state.character, rightPath, "");
+      return;
+    }
     setPath(state.character, rightPath, Number(rightInput.value || 0));
     scheduleSave();
   });
@@ -736,7 +1113,7 @@ function renderCombatPanel() {
   const top = document.createElement("div");
   top.className = "combat-top-row";
   top.append(
-    combatField("defense.deflexion", "Déflexion", "cut-field"),
+    combatField("defense.deflexion", "Déflexion", "cut-field", "number", { readOnly: true }),
     combatField("defense.gardeBonus", "Garde", "cut-field"),
     combatField("defense.bonus", "Bonus", "cut-field")
   );
@@ -744,8 +1121,8 @@ function renderCombatPanel() {
   const mid = document.createElement("div");
   mid.className = "combat-mid-row";
   mid.append(
-    combatField("derived.initiative", "Initiative", "cut-field big-value", "number"),
-    combatField("derived.mouvement", "Mouvement", "cut-field big-value", "number")
+    derivedSplitField("derived.initiative", "Initiative", "derived.initiativeBonus", "Bonus", "cut-field big-value"),
+    derivedSplitField("derived.mouvement", "Mouvement", "derived.mouvementBonus", "Bonus", "cut-field big-value")
   );
 
   const pv = document.createElement("div");
@@ -753,7 +1130,7 @@ function renderCombatPanel() {
   const pvMain = document.createElement("div");
   pvMain.className = "pv-stack";
   pvMain.append(
-    dualCombatField("derived.pvActuels", "PV actuels", "derived.pvMax", "Max PV", "cut-field big-value")
+    dualCombatField("derived.pvActuels", "PV actuels", "derived.pvMax", "Max PV", "cut-field big-value", { rightReadOnly: true })
   );
   const pvBonus = document.createElement("div");
   pvBonus.className = "pv-bonus";
@@ -766,10 +1143,10 @@ function renderCombatPanel() {
   const bottom = document.createElement("div");
   bottom.className = "combat-bottom-row";
   bottom.append(
-    combatField("derived.seuilMiss", "Seuil. Miss", "cut-field big-value"),
+    combatField("derived.seuilMiss", "Seuil. Miss", "cut-field big-value", "number", { readOnly: true }),
     combatField("derived.bonusAttaque", "Bns. attaque", "cut-field"),
-    combatField("derived.canalisation", "Canalisation", "cut-field"),
-    combatField("derived.seuilSauvegarde", "Seuil. sauv.", "cut-field")
+    combatField("derived.canalisation", "Canalisation", "cut-field", "number", { readOnly: true }),
+    combatField("derived.volonte", "Volonté", "cut-field", "number", { readOnly: true })
   );
 
   right.append(top, mid, pv);
@@ -937,7 +1314,7 @@ function renderInventory() {
   const m = module("Totem", 12);
   const grid = document.createElement("div");
   grid.className = "totem-wrap";
-  grid.append(renderTotemCard());
+  grid.append(renderTotemCard(), renderTokenSummaryCard());
   m.append(grid);
   return m;
 }
@@ -989,7 +1366,7 @@ function renderTotemCard() {
   label.className = "totem-label";
   label.textContent = "Totem";
 
-  card.append(top, description, label);
+  card.append(top, description);
   return card;
 }
 
@@ -1000,7 +1377,6 @@ function renderNarrative() {
   [
     ["narrative.background", "Background"],
     ["narrative.objectif", "Objectif"],
-    ["narrative.liens", "Liens"],
     ["narrative.personnalite", "Personnalité"],
     ["narrative.reputation", "Réputation"],
     ["narrative.education", "Éducation"],
@@ -1589,11 +1965,11 @@ function renderCardsAbilitiesPanel() {
   const top = document.createElement("div");
   top.className = "cards-abilities-grid";
   [
-    ["cardMin", "Carte min"],
-    ["cardMax", "Carte max"],
-    ["knownAbilities", "Capacités connues"],
-    ["maxPreparedAbilities", "Capacités préparées max"]
-  ].forEach(([key, label]) => top.append(masteryField(controls, key, label)));
+    ["cardMin", "Carte min", false],
+    ["cardMax", "Carte max", false],
+    ["knownAbilities", "Capacités connues", true],
+    ["maxPreparedAbilities", "Capacités préparées max", false]
+  ].forEach(([key, label, readOnly]) => top.append(masteryField(controls, key, label, { readOnly })));
 
   const reductions = document.createElement("div");
   reductions.className = "color-reduction-grid";
@@ -1664,14 +2040,25 @@ function renderElementalMasteriesPanel() {
   return panel;
 }
 
-function masteryField(target, key, labelText) {
+function masteryField(target, key, labelText, options = {}) {
   const wrap = document.createElement("label");
   wrap.className = "mastery-field";
   const label = document.createElement("span");
   label.textContent = labelText;
   const input = document.createElement("input");
+  const targetPath = target === state.character.abilityControls ? `abilityControls.${key}` : key;
+  input.dataset.path = targetPath;
   input.value = target[key] ?? "";
+  if (options.readOnly) {
+    input.dataset.locked = "true";
+    input.readOnly = true;
+    input.tabIndex = -1;
+  }
   input.addEventListener("input", () => {
+    if (options.readOnly) {
+      input.value = target[key] ?? "";
+      return;
+    }
     target[key] = input.value;
     scheduleSave();
   });
@@ -1757,6 +2144,7 @@ function equipmentField(target, fieldName) {
   input.value = target[fieldName] || "";
   input.addEventListener("input", () => {
     target[fieldName] = input.value;
+    recalculate();
     scheduleSave();
   });
   wrap.append(label, input);
@@ -1838,15 +2226,34 @@ function renderInventoryItem(item, index) {
     }
   };
 
+  const refreshEquipButton = () => {
+    const equipable = item.type === "Arme" || item.type === "Équipement";
+    equipButton.hidden = !equipable;
+    equipButton.textContent = item.type === "Arme" ? "Équiper arme" : "Équiper";
+    equipButton.disabled = !equipable || !isEditMode();
+  };
+
+  const refreshItemUi = () => {
+    refreshBody();
+    refreshEquipButton();
+  };
+
   const head = document.createElement("div");
   head.className = "inventory-item-head";
+  const equipButton = document.createElement("button");
+  equipButton.className = "inventory-equip-button";
+  equipButton.type = "button";
+  equipButton.addEventListener("click", () => {
+    equipInventoryItem(item);
+  });
   head.append(
-    inventoryTypeField(item, refreshBody),
+    equipButton,
+    inventoryTypeField(item, refreshItemUi),
     inventoryTextField(item, "name", "Nom"),
     inventoryTextField(item, "raretePrix", "Rareté / prix estimé")
   );
 
-  refreshBody();
+  refreshItemUi();
 
   const description = document.createElement("label");
   description.className = "inventory-description-field";
@@ -1870,7 +2277,11 @@ function renderInventoryItem(item, index) {
     scheduleSave();
   });
 
-  card.append(head, body, description, remove);
+  card.append(head, body);
+  if (item.type !== "Équipement") {
+    card.append(description);
+  }
+  card.append(remove);
   return card;
 }
 
@@ -1891,7 +2302,8 @@ function inventoryTypeField(item, onTypeChange = () => {}) {
     item.type = select.value;
     if (item.type === "Équipement") {
       item.slot = item.slot || "casque";
-      item.equipmentData = normalizeInventoryEquipmentData(item.slot, item.equipmentData);
+      item.equipmentData = normalizeInventoryEquipmentData(item.slot, {});
+      item.name = EQUIPMENT_SLOT_LABELS[item.slot] || item.name;
     }
     if (item.type === "Arme") {
       applyWeaponSelection(item, item.family || "Épées droites", item.weaponName || "");
@@ -1936,7 +2348,8 @@ function renderInventoryEquipmentDetails(item, onChange = () => {}) {
   }
   select.addEventListener("change", () => {
     item.slot = select.value;
-    item.equipmentData = normalizeInventoryEquipmentData(item.slot, item.equipmentData);
+    item.equipmentData = normalizeInventoryEquipmentData(item.slot, {});
+    item.name = EQUIPMENT_SLOT_LABELS[item.slot] || item.name;
     onChange();
     scheduleSave();
   });
@@ -2016,9 +2429,23 @@ function renderInventoryWeaponDetails(item, onChange = () => {}) {
     const label = document.createElement("span");
     label.textContent = labelText;
     const input = document.createElement(key === "familySummary" ? "textarea" : "input");
+    input.dataset.inventoryKey = key;
     input.value = item[key] || "";
+    if (key === "parade") {
+      input.readOnly = true;
+      input.tabIndex = -1;
+    }
     input.addEventListener("input", () => {
       item[key] = input.value;
+      if (key === "degats") {
+        item.parade = computeParadeFromDamage(item.degats);
+        const paradeInput = stats.querySelector('[data-inventory-key="parade"]');
+        if (paradeInput) paradeInput.value = item.parade;
+      }
+      if (key === "parade") {
+        item.parade = computeParadeFromDamage(item.degats);
+        input.value = item.parade;
+      }
       scheduleSave();
     });
     fieldWrap.append(label, input);
@@ -2063,9 +2490,76 @@ function applyWeaponSelection(item, family, weaponName) {
   item.weaponName = weapon.name;
   item.name = weapon.name;
   item.degats = weapon.damage;
-  item.parade = String(Math.floor(parseInt(weapon.damage.replace(/\D/g, ""), 10) / 2) || "");
+  item.parade = computeParadeFromDamage(weapon.damage);
   item.attributs = weapon.attributes.join(", ");
   item.familySummary = WEAPON_FAMILY_SUMMARIES[family] || "";
+}
+
+function equipInventoryItem(item) {
+  if (!isEditMode()) return;
+  if (item.type === "Équipement") {
+    const slot = item.slot || "casque";
+    state.character.equipment[slot] = normalizeInventoryEquipmentData(slot, {
+      ...item.equipmentData,
+      nom: item.equipmentData?.nom || EQUIPMENT_SLOT_LABELS[slot] || item.name || "",
+      raretePrix: item.equipmentData?.raretePrix || item.raretePrix || "",
+      description: item.equipmentData?.description || item.description || ""
+    });
+    setStatus(`${EQUIPMENT_SLOT_LABELS[slot]} équipé`);
+    render();
+    scheduleSave();
+    return;
+  }
+
+  if (item.type !== "Arme") {
+    setStatus("Cet objet ne peut pas être équipé");
+    return;
+  }
+
+  state.character.weapons = state.character.weapons || [];
+  const agilityModifier = String(modifier(getPath(state.character, "stats.agilite", 10)));
+  const weaponUsesAgility = String(item.attributs || "").toLowerCase().includes("finesse");
+  const baseModifierValue = String(getEquippedWeaponModifier(item.attributs));
+  const equippedWeapon = {
+    nom: item.name || item.weaponName || "",
+    de: item.degats || "",
+    forceAgi: baseModifierValue,
+    critique: weaponUsesAgility ? agilityModifier : "0",
+    avantage: weaponUsesAgility ? agilityModifier : "0",
+    bonus: "",
+    perfection: "",
+    notes: [item.familySummary || "", item.description || ""].filter(Boolean).join("\n\n")
+  };
+
+  const firstEmptyIndex = state.character.weapons.findIndex((weapon) => {
+    return !String(weapon?.nom || "").trim() && !String(weapon?.de || "").trim();
+  });
+
+  if (state.character.weapons.length < 3) {
+    if (firstEmptyIndex >= 0) {
+      state.character.weapons[firstEmptyIndex] = equippedWeapon;
+      setStatus(`Arme équipée dans l'emplacement ${firstEmptyIndex + 1}`);
+      render();
+      scheduleSave();
+      return;
+    }
+    state.character.weapons.push(equippedWeapon);
+    setStatus("Arme ajoutée aux armes équipées");
+    render();
+    scheduleSave();
+    return;
+  }
+  if (firstEmptyIndex >= 0) {
+    state.character.weapons[firstEmptyIndex] = equippedWeapon;
+    setStatus(`Arme équipée dans l'emplacement ${firstEmptyIndex + 1}`);
+    render();
+    scheduleSave();
+    return;
+  }
+  state.character.weapons[0] = equippedWeapon;
+  setStatus("Arme 1 remplacée");
+  render();
+  scheduleSave();
 }
 
 function renderNotes() {
@@ -2074,7 +2568,293 @@ function renderNotes() {
   return m;
 }
 
+function renderTokenSummaryCard() {
+  const card = document.createElement("section");
+  card.className = "token-summary-card";
+  const title = document.createElement("h4");
+  title.textContent = "Tokens";
+  const wrap = document.createElement("div");
+  wrap.className = "token-box-grid";
+  [
+    ["resources.tokens.force", "Force"],
+    ["resources.tokens.agilite", "Agilité"],
+    ["resources.tokens.esprit", "Esprit"],
+    ["resources.tokens.social", "Social"]
+  ].forEach(([path, labelText]) => {
+    wrap.append(combatField(path, labelText, "token-box", "number", { readOnly: true }));
+  });
+  card.append(title, wrap);
+  return card;
+}
+
+function toggleNotesWidget(forceOpen = null) {
+  state.settings = state.settings || {};
+  const current = normalizeNotesWidgetSettings();
+  const nextOpen = forceOpen === null ? !current.open : Boolean(forceOpen);
+  state.settings.notesWidget = {
+    ...current,
+    open: nextOpen
+  };
+  const widget = document.getElementById("floatingNotesWidget");
+  if (widget) {
+    widget.classList.toggle("is-open", nextOpen);
+    const bubble = widget.querySelector(".notes-bubble");
+    if (bubble) bubble.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+  }
+  saveSettingsSoon();
+}
+
+function renderFloatingNotesWidget() {
+  const existing = document.getElementById("floatingNotesWidget");
+  if (existing) existing.remove();
+
+  const settings = normalizeNotesWidgetSettings();
+  state.settings = state.settings || {};
+  state.settings.notesWidget = { ...settings };
+
+  const widget = document.createElement("div");
+  widget.id = "floatingNotesWidget";
+  widget.className = `floating-notes-widget ${widgetPanelSideClass(settings.x)}${settings.open ? " is-open" : ""}`;
+  widget.style.left = `${settings.x}px`;
+  widget.style.top = `${settings.y}px`;
+
+  const bubble = document.createElement("button");
+  bubble.type = "button";
+  bubble.className = "notes-bubble";
+  bubble.textContent = "Notes";
+  bubble.setAttribute("aria-expanded", settings.open ? "true" : "false");
+
+  const panel = document.createElement("section");
+  panel.className = "notes-panel";
+
+  const title = document.createElement("h3");
+  title.textContent = "Notes";
+
+  const textarea = document.createElement("textarea");
+  textarea.dataset.notesSync = "true";
+  textarea.value = state.character?.notes || "";
+  textarea.readOnly = !isEditMode();
+  textarea.placeholder = "Écris tes notes ici...";
+  textarea.addEventListener("input", () => {
+    state.character.notes = textarea.value;
+    syncNotesViews(textarea.value, textarea);
+    scheduleSave();
+  });
+
+  panel.append(title, textarea);
+  widget.append(panel, bubble);
+  document.body.append(widget);
+
+  let dragging = false;
+  let moved = false;
+  let startPointerX = 0;
+  let startPointerY = 0;
+  let startX = settings.x;
+  let startY = settings.y;
+
+  const clampAndSavePosition = (x, y) => {
+    const maxX = Math.max(8, window.innerWidth - widget.offsetWidth - 8);
+    const maxY = Math.max(8, window.innerHeight - bubble.offsetHeight - 8);
+    const nextX = Math.min(Math.max(8, x), maxX);
+    const nextY = Math.min(Math.max(8, y), maxY);
+    widget.style.left = `${nextX}px`;
+    widget.style.top = `${nextY}px`;
+    widget.classList.remove("panel-left", "panel-right");
+    widget.classList.add(widgetPanelSideClass(nextX));
+    state.settings.notesWidget = {
+      ...state.settings.notesWidget,
+      x: nextX,
+      y: nextY
+    };
+  };
+
+  const finishDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    document.removeEventListener("pointermove", handlePointerMove);
+    document.removeEventListener("pointerup", handlePointerUp);
+    if (moved) {
+      saveSettingsSoon();
+      return;
+    }
+    toggleNotesWidget();
+  };
+
+  const handlePointerMove = (event) => {
+    if (!dragging) return;
+    const deltaX = event.clientX - startPointerX;
+    const deltaY = event.clientY - startPointerY;
+    if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) moved = true;
+    clampAndSavePosition(startX + deltaX, startY + deltaY);
+  };
+
+  const handlePointerUp = () => finishDrag();
+
+  bubble.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    dragging = true;
+    moved = false;
+    startPointerX = event.clientX;
+    startPointerY = event.clientY;
+    startX = state.settings.notesWidget.x;
+    startY = state.settings.notesWidget.y;
+    bubble.setPointerCapture?.(event.pointerId);
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerup", handlePointerUp);
+    event.preventDefault();
+  });
+}
+
+function toggleGuideWidget(forceOpen = null) {
+  state.settings = state.settings || {};
+  const current = normalizeGuideWidgetSettings();
+  const nextOpen = forceOpen === null ? !current.open : Boolean(forceOpen);
+  state.settings.guideWidget = {
+    ...current,
+    open: nextOpen
+  };
+  const widget = document.getElementById("floatingGuideWidget");
+  if (widget) {
+    widget.classList.toggle("is-open", nextOpen);
+    const bubble = widget.querySelector(".guide-bubble");
+    if (bubble) bubble.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+  }
+  saveSettingsSoon();
+}
+
+function renderGuideSection(section) {
+  const block = document.createElement("section");
+  block.className = "guide-section";
+
+  const title = document.createElement("h4");
+  title.className = "guide-section-title";
+  title.textContent = section.title;
+  block.append(title);
+
+  const list = document.createElement("div");
+  list.className = "guide-entry-list";
+  for (const entry of section.entries) {
+    const item = document.createElement("article");
+    item.className = "guide-entry";
+
+    const heading = document.createElement("h5");
+    heading.className = "guide-entry-title";
+    if (entry.type && GUIDE_TITLE_COLORS[entry.type]) {
+      heading.classList.add(GUIDE_TITLE_COLORS[entry.type]);
+    }
+    heading.textContent = entry.title;
+
+    const description = document.createElement("p");
+    description.className = "guide-entry-description";
+    description.textContent = entry.description;
+
+    item.append(heading, description);
+    list.append(item);
+  }
+
+  block.append(list);
+  return block;
+}
+
+function renderFloatingGuideWidget() {
+  const existing = document.getElementById("floatingGuideWidget");
+  if (existing) existing.remove();
+
+  const settings = normalizeGuideWidgetSettings();
+  state.settings = state.settings || {};
+  state.settings.guideWidget = { ...settings };
+
+  const widget = document.createElement("div");
+  widget.id = "floatingGuideWidget";
+  widget.className = `floating-guide-widget ${widgetPanelSideClass(settings.x)}${settings.open ? " is-open" : ""}`;
+  widget.style.left = `${settings.x}px`;
+  widget.style.top = `${settings.y}px`;
+
+  const bubble = document.createElement("button");
+  bubble.type = "button";
+  bubble.className = "guide-bubble";
+  bubble.textContent = "Guide";
+  bubble.setAttribute("aria-expanded", settings.open ? "true" : "false");
+
+  const panel = document.createElement("section");
+  panel.className = "guide-panel";
+
+  const title = document.createElement("h3");
+  title.textContent = "Guide";
+  panel.append(title);
+
+  const content = document.createElement("div");
+  content.className = "guide-content";
+  for (const section of GUIDE_SECTIONS) {
+    content.append(renderGuideSection(section));
+  }
+  panel.append(content);
+
+  widget.append(panel, bubble);
+  document.body.append(widget);
+
+  let dragging = false;
+  let moved = false;
+  let startPointerX = 0;
+  let startPointerY = 0;
+  let startX = settings.x;
+  let startY = settings.y;
+
+  const clampAndSavePosition = (x, y) => {
+    const maxX = Math.max(8, window.innerWidth - widget.offsetWidth - 8);
+    const maxY = Math.max(8, window.innerHeight - bubble.offsetHeight - 8);
+    const nextX = Math.min(Math.max(8, x), maxX);
+    const nextY = Math.min(Math.max(8, y), maxY);
+    widget.style.left = `${nextX}px`;
+    widget.style.top = `${nextY}px`;
+    widget.classList.remove("panel-left", "panel-right");
+    widget.classList.add(widgetPanelSideClass(nextX));
+    state.settings.guideWidget = {
+      ...state.settings.guideWidget,
+      x: nextX,
+      y: nextY
+    };
+  };
+
+  const finishDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    document.removeEventListener("pointermove", handlePointerMove);
+    document.removeEventListener("pointerup", handlePointerUp);
+    if (moved) {
+      saveSettingsSoon();
+      return;
+    }
+    toggleGuideWidget();
+  };
+
+  const handlePointerMove = (event) => {
+    if (!dragging) return;
+    const deltaX = event.clientX - startPointerX;
+    const deltaY = event.clientY - startPointerY;
+    if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) moved = true;
+    clampAndSavePosition(startX + deltaX, startY + deltaY);
+  };
+
+  const handlePointerUp = () => finishDrag();
+
+  bubble.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    dragging = true;
+    moved = false;
+    startPointerX = event.clientX;
+    startPointerY = event.clientY;
+    startX = state.settings.guideWidget.x;
+    startY = state.settings.guideWidget.y;
+    bubble.setPointerCapture?.(event.pointerId);
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerup", handlePointerUp);
+    event.preventDefault();
+  });
+}
+
 function recalculate() {
+  recalculateDerivedValues();
   for (const stat of state.template?.stats || []) {
     const el = document.querySelector(`[data-mod-for="${stat.key}"]`);
     if (el) {
@@ -2082,6 +2862,30 @@ function recalculate() {
       el.textContent = `${mod >= 0 ? "" : "-"}${Math.abs(mod)}`;
     }
   }
+
+  const syncMap = {
+    "derived.pvMax": getPath(state.character, "derived.pvMax", ""),
+    "derived.seuilMiss": getPath(state.character, "derived.seuilMiss", ""),
+    "derived.mouvement": getPath(state.character, "derived.mouvement", ""),
+    "derived.initiative": getPath(state.character, "derived.initiative", ""),
+    "derived.canalisation": getPath(state.character, "derived.canalisation", ""),
+    "derived.volonte": getPath(state.character, "derived.volonte", ""),
+    "defense.deflexion": getPath(state.character, "defense.deflexion", ""),
+    "derived.mouvementBonus": getPath(state.character, "derived.mouvementBonus", ""),
+    "derived.initiativeBonus": getPath(state.character, "derived.initiativeBonus", ""),
+    "abilityControls.knownAbilities": getPath(state.character, "abilityControls.knownAbilities", ""),
+    "resources.tokens.force": getPath(state.character, "resources.tokens.force", ""),
+    "resources.tokens.agilite": getPath(state.character, "resources.tokens.agilite", ""),
+    "resources.tokens.esprit": getPath(state.character, "resources.tokens.esprit", ""),
+    "resources.tokens.social": getPath(state.character, "resources.tokens.social", "")
+  };
+
+  for (const [path, value] of Object.entries(syncMap)) {
+    document.querySelectorAll(`[data-path="${path}"]`).forEach((input) => {
+      input.value = value;
+    });
+  }
+
 }
 
 async function uploadImage(file, targetObject, targetKey = "image") {
@@ -2326,6 +3130,22 @@ async function init() {
   await loadSettings();
   const currentId = Storage.getCurrentCharacterId() || "nouveau-personnage";
   await loadCharacter(currentId);
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const target = event.target;
+    const tagName = target?.tagName || "";
+    if (target?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(tagName)) return;
+    event.preventDefault();
+    toggleNotesWidget();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Shift" || event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+    const target = event.target;
+    const tagName = target?.tagName || "";
+    if (target?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(tagName)) return;
+    event.preventDefault();
+    toggleGuideWidget();
+  });
   const modeSelect = $("#viewModeSelect");
   if (modeSelect) {
     modeSelect.value = state.mode;
