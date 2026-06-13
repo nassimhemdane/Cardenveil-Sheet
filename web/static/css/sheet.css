@@ -448,21 +448,17 @@ input[type="number"]::-webkit-inner-spin-button {
   grid-template-columns: repeat(6, 1fr);
 }
 
-.identity-grid .field:nth-child(1),
-.identity-grid .identity-field:nth-child(1),
-.identity-grid .identity-field:nth-child(3) {
+.identity-grid .identity-name-field {
+  grid-column: span 6;
+}
+
+.identity-grid .identity-alignement-field,
+.identity-grid .identity-race-field {
   grid-column: span 3;
 }
 
-.identity-grid .field:nth-child(2),
-.identity-grid .field:nth-child(4),
-.identity-grid .identity-field:nth-child(2),
-.identity-grid .identity-field:nth-child(4) {
-  grid-column: span 3;
-}
-
-.identity-grid .field:nth-child(n+5),
-.identity-grid .identity-field:nth-child(n+5) {
+.identity-grid .identity-xp-field,
+.identity-grid .identity-level-field {
   grid-column: span 2;
 }
 
@@ -605,14 +601,6 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 0;
   padding-top: 0;
   margin-top: 0;
-}
-
-.identity-grid .identity-field {
-  grid-column: span 3;
-}
-
-.identity-grid .identity-field:nth-child(n+5) {
-  grid-column: span 2;
 }
 
 .field textarea {
@@ -1447,7 +1435,7 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
 
 .capacity-head {
   display: grid;
-  grid-template-columns: 28px 1fr 24px 28px;
+  grid-template-columns: 28px minmax(0, 1fr) auto 24px 28px;
   gap: 5px;
   align-items: start;
 }
@@ -1462,6 +1450,36 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
   font-family: Georgia, "Times New Roman", serif;
   font-size: 20px;
   font-weight: 700;
+}
+
+.capacity-cost-summary {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 34px;
+  padding: 3px 0 4px;
+  border-bottom: 1px solid var(--line);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.capacity-cost-summary.is-red {
+  color: #b11414;
+}
+
+.capacity-cost-summary.is-dark {
+  color: #111111;
+}
+
+.capacity-cost-summary-value {
+  font-size: 28px;
+}
+
+.capacity-cost-summary-color {
+  font-size: 24px;
 }
 
 .capacity-prepared-toggle {
@@ -1550,6 +1568,10 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
   gap: 5px;
 }
 
+.capacity-cost-section {
+  margin-top: -8px;
+}
+
 .capacity-section h4 {
   margin: 0;
   font-size: 12px;
@@ -1565,7 +1587,7 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
 .capacity-cost-formula {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, auto));
-  align-items: end;
+  align-items: start;
   gap: 6px;
   justify-content: start;
 }
@@ -1595,8 +1617,9 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
 }
 
 .capacity-cost-operator {
-  align-self: end;
-  padding-bottom: 7px;
+  align-self: center;
+  padding-top: 8px;
+  padding-bottom: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 18px;
   font-weight: 700;
@@ -1609,6 +1632,7 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
   align-items: end;
   justify-content: center;
   gap: 12px;
+  margin-top: -18px;
 }
 
 .capacity-total-field {
@@ -1616,6 +1640,7 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
   grid-template-columns: 12px auto 78px;
   gap: 6px;
   align-items: end;
+  transform: translateY(-14px);
 }
 
 .capacity-total-field .capacity-cost-operator {
@@ -1632,8 +1657,11 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
 
 .capacity-color-field {
   display: grid;
-  gap: 3px;
+  grid-template-columns: 88px auto;
+  gap: 8px;
+  align-items: end;
   min-width: 88px;
+  transform: translateY(-14px);
 }
 
 .capacity-color-field select {
@@ -1642,6 +1670,11 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
   text-align: center;
   font-size: 18px;
   font-weight: 700;
+}
+
+.capacity-color-field span {
+  align-self: center;
+  padding-bottom: 2px;
 }
 
 .capacity-color-field select.color-heart,
@@ -2067,6 +2100,15 @@ body[data-mode="view"] #sheetRoot input[type="number"]::-webkit-inner-spin-butto
 
   .capacity-cost-operator {
     display: none;
+  }
+
+  .capacity-head {
+    grid-template-columns: 28px minmax(0, 1fr) 24px 28px;
+  }
+
+  .capacity-cost-summary {
+    grid-column: 2 / 3;
+    justify-content: flex-start;
   }
 
   .capacity-image-drop {

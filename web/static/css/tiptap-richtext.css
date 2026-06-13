@@ -1,0 +1,279 @@
+.rt-source-hidden {
+  display: none !important;
+}
+
+.rt-editor-shell {
+  width: 100%;
+  min-width: 0;
+}
+
+.rt-editor-content,
+.rt-editor-content-inner,
+.rt-editor-content-inner > * {
+  min-width: 0;
+}
+
+.rt-editor-content-inner {
+  outline: none;
+}
+
+.rt-editor-content-inner p,
+.rt-editor-content-inner h1,
+.rt-editor-content-inner h2,
+.rt-editor-content-inner h3,
+.rt-editor-content-inner ul,
+.rt-editor-content-inner ol {
+  margin: 0;
+}
+
+.rt-editor-content-inner ul,
+.rt-editor-content-inner ol {
+  padding-left: 1.2em;
+}
+
+.rt-mode-single .rt-editor-content-inner {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.rt-mode-multiline {
+  resize: vertical;
+  overflow: auto;
+}
+
+.rt-mode-multiline .rt-editor-content-inner {
+  white-space: pre-wrap;
+}
+
+.rt-editor-shell.is-readonly {
+  cursor: default;
+}
+
+.field .rt-editor-shell,
+.line-input.rt-editor-shell,
+.equipment-field .rt-editor-shell,
+.inventory-resource-field .rt-editor-shell,
+.inventory-text-field .rt-editor-shell,
+.inventory-description-field .rt-editor-shell,
+.capacity-meta-field .rt-editor-shell,
+.capacity-value-field .rt-editor-shell,
+.feat-card .rt-editor-shell,
+.mastery-field .rt-editor-shell {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.field .rt-editor-content-inner,
+.line-input.rt-editor-shell .rt-editor-content-inner,
+.equipment-field .rt-editor-content-inner,
+.inventory-resource-field .rt-editor-content-inner,
+.inventory-text-field .rt-editor-content-inner,
+.inventory-description-field .rt-editor-content-inner,
+.capacity-meta-field .rt-editor-content-inner,
+.capacity-value-field .rt-editor-content-inner,
+.feat-card .rt-editor-content-inner,
+.mastery-field .rt-editor-content-inner {
+  min-height: 27px;
+  padding: 3px 5px;
+}
+
+.field .rt-mode-multiline,
+.inventory-description-field .rt-mode-multiline,
+.feat-card .rt-mode-multiline,
+.equipment-field .rt-mode-multiline,
+.notes-panel .rt-mode-multiline {
+  min-height: 58px;
+}
+
+.identity-module .rt-editor-shell {
+  border: 0;
+  border-bottom: 1px solid #777777;
+  border-radius: 0;
+  background: transparent;
+}
+
+.identity-module .rt-editor-content-inner {
+  min-height: 38px;
+  padding: 0;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.identity-field .rt-editor-content-inner {
+  min-height: 30px;
+  font-size: 17px;
+}
+
+.physical-field .rt-editor-shell {
+  border: 0;
+  background: transparent;
+}
+
+.physical-field .rt-editor-content-inner {
+  padding: 0;
+  font-size: 17px;
+}
+
+.combat-field .rt-editor-shell,
+.dual-side .rt-editor-shell {
+  border: 0;
+  background: transparent;
+}
+
+.combat-field .rt-editor-content-inner,
+.dual-side .rt-editor-content-inner {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.big-value .rt-editor-content-inner,
+.dual-side .rt-editor-content-inner {
+  font-size: 28px;
+}
+
+.weapon-field .rt-editor-shell {
+  width: 100%;
+  min-height: 32px;
+  border: 2px solid var(--line);
+  background: #ffffff;
+}
+
+.weapon-field .rt-editor-content-inner {
+  min-height: 28px;
+  padding: 3px 5px;
+}
+
+.weapon-notes.rt-editor-shell {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  border-top: 1px solid #777777;
+  border-bottom: 1px solid #777777;
+  background: #ffffff;
+}
+
+.weapon-notes.rt-editor-shell .rt-editor-content-inner {
+  min-height: 44px;
+  padding: 6px 0;
+  font-size: 12px;
+}
+
+.totem-name.rt-editor-shell {
+  width: 100%;
+  border: 0;
+  background: #ffffff;
+}
+
+.totem-name.rt-editor-shell .rt-editor-content-inner {
+  min-height: 38px;
+  padding: 0 6px;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.totem-description.rt-editor-shell {
+  width: 100%;
+  min-height: 180px;
+  border: 0;
+  background: #ffffff;
+}
+
+.totem-description.rt-editor-shell .rt-editor-content-inner {
+  min-height: 180px;
+  padding: 6px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.notes-panel .rt-editor-shell {
+  width: 100%;
+  min-height: 260px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.notes-panel .rt-editor-content-inner {
+  min-height: 260px;
+  padding: 10px 12px;
+}
+
+.capacity-name-input.rt-editor-shell {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.capacity-name-input.rt-editor-shell .rt-editor-content-inner {
+  min-height: 34px;
+  padding: 2px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.capacity-description.rt-editor-shell {
+  min-height: 120px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.capacity-description.rt-editor-shell .rt-editor-content-inner {
+  min-height: 120px;
+  padding: 4px 6px;
+  line-height: 1.3;
+}
+
+.rt-bubble-menu {
+  position: absolute;
+  z-index: 60;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+  border: 1px solid #0f0f10;
+  border-radius: 999px;
+  background: rgba(17, 17, 18, 0.96);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, calc(-100% - 8px));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.rt-bubble-menu.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rt-bubble-button {
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.rt-bubble-button.is-active,
+.rt-bubble-button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+body[data-mode="view"] .rt-editor-shell {
+  cursor: default;
+}

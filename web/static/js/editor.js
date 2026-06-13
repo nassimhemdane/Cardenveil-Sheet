@@ -8,6 +8,47 @@
   mode: "edit"
 };
 
+const RICH_TEXT_EXCLUDED_PATHS = [
+  /^stats\./,
+  /^progression\.xpDepenses$/,
+  /^progression\.xpDisponibles$/,
+  /^identity\.niveau$/,
+  /^resources\.tokens\./,
+  /^derived\.pvMax$/,
+  /^derived\.bonusPv$/,
+  /^derived\.pvActuels$/,
+  /^derived\.pvTemporaires$/,
+  /^derived\.initiative$/,
+  /^derived\.initiativeBonus$/,
+  /^derived\.mouvement$/,
+  /^derived\.mouvementBonus$/,
+  /^derived\.seuilMiss$/,
+  /^derived\.canalisation$/,
+  /^derived\.volonte$/,
+  /^abilityControls\.knownAbilities$/,
+  /^abilityControls\.maxPreparedAbilities$/,
+  /^abilityControls\.cardMin$/,
+  /^abilityControls\.cardMax$/
+];
+
+function isRichTextExcludedPath(path = "") {
+  return RICH_TEXT_EXCLUDED_PATHS.some((pattern) => pattern.test(String(path || "")));
+}
+
+function shouldEnableRichText(path = "", type = "text", options = {}) {
+  if (options.readOnly || type === "number") return false;
+  if (path && isRichTextExcludedPath(path)) return false;
+  return type === "textarea" || type === "text";
+}
+
+function markRichTextEditable(element, mode = "single", path = "") {
+  element.dataset.richText = "true";
+  element.dataset.richTextMode = mode;
+  if (path) {
+    element.dataset.richTextPath = path;
+  }
+}
+
 const CAPACITY_COLOR_OPTIONS = [
   { value: "spade", symbol: "\u2660" },
   { value: "heart", symbol: "\u2665" },
@@ -583,6 +624,7 @@ function syncNotesViews(value, sourceElement = null) {
   document.querySelectorAll('[data-notes-sync="true"]').forEach((element) => {
     if (element === sourceElement) return;
     element.value = value || "";
+    element.dispatchEvent(new Event("richtextsync"));
   });
 }
 
@@ -600,15 +642,16 @@ function recalculateDerivedValues() {
   const ganteletsDeflexion = toNumber(getPath(state.character, "equipment.gantelets.deflexion", 0), 0);
   const plastronDeflexion = toNumber(getPath(state.character, "equipment.plastron.deflexion", 0), 0);
   const bottesDeflexion = toNumber(getPath(state.character, "equipment.bottes.deflexion", 0), 0);
+  const initiativeBonus = toNumber(getPath(state.character, "derived.initiativeBonus", 0), 0);
+  const mouvementBonus = toNumber(getPath(state.character, "derived.mouvementBonus", 0), 0);
 
   const modForce = modifier(force);
   const modAgilite = modifier(agilite);
   const modEsprit = modifier(esprit);
   const modSocial = modifier(social);
 
-  const pvMax = Math.round(30 + (2.5 * force));
-  const mouvementTotal = Math.floor(5 + (agilite / 2));
-  const initiativeTotal = agilite - 10;
+  const mouvementTotal = Math.floor(5 + (agilite / 2)) + mouvementBonus;
+  const initiativeTotal = (agilite - 10) + initiativeBonus;
   const knownAbilities = Math.floor(esprit / 2);
   const missThreshold = Math.max(1, -(1 + modAgilite));
   const deflexionTotale = casqueDeflexion + ganteletsDeflexion + plastronDeflexion + bottesDeflexion;
@@ -618,7 +661,6 @@ function recalculateDerivedValues() {
   state.character.resources = state.character.resources || {};
   state.character.resources.tokens = state.character.resources.tokens || {};
 
-  setPath(state.character, "derived.pvMax", pvMax);
   setPath(state.character, "derived.mouvement", mouvementTotal);
   setPath(state.character, "derived.initiative", initiativeTotal);
   setPath(state.character, "derived.seuilMiss", missThreshold);
@@ -651,6 +693,9 @@ function field(path, label, type = "text", options = {}) {
   input.dataset.path = path;
   if (type !== "textarea") input.type = type;
   input.value = getPath(state.character, path, "");
+  if (shouldEnableRichText(path, type, options)) {
+    markRichTextEditable(input, type === "textarea" ? "multiline" : "single", path);
+  }
   if (options.readOnly) {
     input.dataset.locked = "true";
     input.readOnly = true;
@@ -669,7 +714,6 @@ function field(path, label, type = "text", options = {}) {
     if (path === "notes") {
       syncNotesViews(value, input);
     }
-    recalculate();
     scheduleSave();
   });
   wrap.append(labelEl, input);
@@ -686,7 +730,6 @@ function module(title, span = 4) {
 }
 
 function render() {
-  recalculateDerivedValues();
   $("#templateName").textContent = state.template?.name || "";
   const root = $("#sheetRoot");
   root.innerHTML = "";
@@ -712,6 +755,7 @@ function render() {
   renderFloatingGuideWidget();
   recalculate();
   applyModeToSheet();
+  window.CardenveilRichText?.refresh();
 }
 
 function applyModeToSheet() {
@@ -740,6 +784,7 @@ function applyModeToSheet() {
   if (floatingNotesInput) {
     floatingNotesInput.readOnly = !isEditMode();
   }
+  window.CardenveilRichText?.refreshMode();
 }
 
 function renderGenericPage(page) {
@@ -824,14 +869,13 @@ function renderIdentity() {
   const grid = document.createElement("div");
   grid.className = "identity-grid";
   [
-    ["identity.nom", "Nom du personnage"],
-    ["identity.race", "Race"],
-    ["identity.alignement", "Alignement"],
-    ["identity.joueur", "Nom joueur"],
-    ["progression.xpDepenses", "XP dépensés", "number"],
-    ["progression.xpDisponibles", "XP disponibles", "number"],
-    ["identity.niveau", "Niveau", "number"]
-  ].forEach(([path, label, type]) => grid.append(combatField(path, label, "identity-field", type || "text")));
+    ["identity.nom", "Nom du personnage", "text", "identity-field identity-name-field"],
+    ["identity.alignement", "Alignement", "text", "identity-field identity-alignement-field"],
+    ["identity.race", "Race", "text", "identity-field identity-race-field"],
+    ["progression.xpDepenses", "XP dépensés", "number", "identity-field identity-xp-field"],
+    ["progression.xpDisponibles", "XP disponibles", "number", "identity-field identity-xp-field"],
+    ["identity.niveau", "Niveau", "number", "identity-field identity-level-field"]
+  ].forEach(([path, label, type, className]) => grid.append(combatField(path, label, className, type || "text")));
   m.append(grid);
   return m;
 }
@@ -927,16 +971,16 @@ function renderCombat() {
   const grid = document.createElement("div");
   grid.className = "combat-grid";
   [
-    ["derived.pvMax", "Max PV", "number", true],
+    ["derived.pvMax", "Max PV", "number"],
     ["derived.bonusPv", "Bonus PV"],
     ["derived.pvActuels", "PV actuels", "number"],
     ["derived.pvTemporaires", "PV temporaires", "number"],
-    ["derived.initiative", "Initiative", "number", true],
-    ["derived.mouvement", "Mouvement", "number", true],
-    ["derived.seuilMiss", "Seuil de miss", "text", true],
+    ["derived.initiative", "Initiative", "number"],
+    ["derived.mouvement", "Mouvement", "number"],
+    ["derived.seuilMiss", "Seuil de miss", "text"],
     ["derived.bonusAttaque", "Bns. attaque"],
     ["derived.canalisation", "Canalisation"],
-    ["derived.volonte", "Volonté", "number", true]
+    ["derived.volonte", "Volonté", "number"]
   ].forEach(([path, label, type, readOnly]) => grid.append(field(path, label, type || "text", { readOnly })));
   m.append(grid);
   return m;
@@ -949,7 +993,7 @@ function renderDefenseBlock() {
   [
     ["defense.parade", "Parade"],
     ["defense.armure", "Armure"],
-    ["defense.deflexion", "Déflexion", "text", true],
+    ["defense.deflexion", "Déflexion", "text"],
     ["defense.gardeBonus", "Garde"],
     ["defense.bonus", "Bonus"],
     ["derived.fatigue", "Fatigue"],
@@ -966,6 +1010,9 @@ function combatField(path, label, className = "", type = "text", options = {}) {
   input.type = type;
   input.dataset.path = path;
   input.value = getPath(state.character, path, "");
+  if (shouldEnableRichText(path, type, options)) {
+    markRichTextEditable(input, type === "textarea" ? "multiline" : "single", path);
+  }
   if (options.readOnly) {
     input.dataset.locked = "true";
     input.readOnly = true;
@@ -997,10 +1044,11 @@ function derivedSplitField(valuePath, valueLabel, bonusPath, bonusLabel, classNa
   const leftInput = document.createElement("input");
   leftInput.type = "number";
   leftInput.dataset.path = valuePath;
-  leftInput.dataset.locked = "true";
-  leftInput.readOnly = true;
-  leftInput.tabIndex = -1;
   leftInput.value = getPath(state.character, valuePath, "");
+  leftInput.addEventListener("input", () => {
+    setPath(state.character, valuePath, Number(leftInput.value || 0));
+    scheduleSave();
+  });
   const leftRule = document.createElement("span");
   leftRule.className = "combat-rule";
   const leftLabelEl = document.createElement("label");
@@ -1018,7 +1066,7 @@ function derivedSplitField(valuePath, valueLabel, bonusPath, bonusLabel, classNa
   rightInput.dataset.path = bonusPath;
   rightInput.value = getPath(state.character, bonusPath, "");
   rightInput.addEventListener("input", () => {
-    setPath(state.character, bonusPath, rightInput.value);
+    setPath(state.character, bonusPath, Number(rightInput.value || 0));
     scheduleSave();
   });
   const rightRule = document.createElement("span");
@@ -1113,7 +1161,7 @@ function renderCombatPanel() {
   const top = document.createElement("div");
   top.className = "combat-top-row";
   top.append(
-    combatField("defense.deflexion", "Déflexion", "cut-field", "number", { readOnly: true }),
+    combatField("defense.deflexion", "Déflexion", "cut-field", "number"),
     combatField("defense.gardeBonus", "Garde", "cut-field"),
     combatField("defense.bonus", "Bonus", "cut-field")
   );
@@ -1130,7 +1178,7 @@ function renderCombatPanel() {
   const pvMain = document.createElement("div");
   pvMain.className = "pv-stack";
   pvMain.append(
-    dualCombatField("derived.pvActuels", "PV actuels", "derived.pvMax", "Max PV", "cut-field big-value", { rightReadOnly: true })
+    dualCombatField("derived.pvActuels", "PV actuels", "derived.pvMax", "Max PV", "cut-field big-value")
   );
   const pvBonus = document.createElement("div");
   pvBonus.className = "pv-bonus";
@@ -1143,10 +1191,10 @@ function renderCombatPanel() {
   const bottom = document.createElement("div");
   bottom.className = "combat-bottom-row";
   bottom.append(
-    combatField("derived.seuilMiss", "Seuil. Miss", "cut-field big-value", "number", { readOnly: true }),
+    combatField("derived.seuilMiss", "Seuil. Miss", "cut-field big-value", "number"),
     combatField("derived.bonusAttaque", "Bns. attaque", "cut-field"),
-    combatField("derived.canalisation", "Canalisation", "cut-field", "number", { readOnly: true }),
-    combatField("derived.volonte", "Volonté", "cut-field", "number", { readOnly: true })
+    combatField("derived.canalisation", "Canalisation", "cut-field", "number"),
+    combatField("derived.volonte", "Volonté", "cut-field", "number")
   );
 
   right.append(top, mid, pv);
@@ -1249,6 +1297,9 @@ function weaponInput(weapon, key, label) {
   text.textContent = label;
   const input = document.createElement("input");
   input.value = weapon[key] || "";
+  if (["nom"].includes(key)) {
+    markRichTextEditable(input, "single", `weapons.${key}`);
+  }
   input.addEventListener("input", () => {
     weapon[key] = input.value;
     scheduleSave();
@@ -1301,6 +1352,7 @@ function renderWeaponCard(weapon, index) {
   const notes = document.createElement("textarea");
   notes.className = "weapon-notes";
   notes.value = weapon.notes || "";
+  markRichTextEditable(notes, "multiline", "weapons.notes");
   notes.addEventListener("input", () => {
     weapon.notes = notes.value;
     scheduleSave();
@@ -1347,6 +1399,7 @@ function renderTotemCard() {
   name.className = "totem-name";
   name.placeholder = "Nom du totem";
   name.value = totem.nom || "";
+  markRichTextEditable(name, "single", "totem.nom");
   name.addEventListener("input", () => {
     totem.nom = name.value;
     scheduleSave();
@@ -1357,6 +1410,7 @@ function renderTotemCard() {
   const description = document.createElement("textarea");
   description.className = "totem-description";
   description.value = totem.description || "";
+  markRichTextEditable(description, "multiline", "totem.description");
   description.addEventListener("input", () => {
     totem.description = description.value;
     scheduleSave();
@@ -1407,6 +1461,7 @@ function renderStringList(title, items) {
     const input = document.createElement("input");
     input.className = "line-input";
     input.value = item || "";
+    markRichTextEditable(input, "single");
     input.addEventListener("input", () => {
       items[index] = input.value;
       scheduleSave();
@@ -1472,6 +1527,7 @@ function renderRows(path, rowClass, keys, labels) {
       input.className = "line-input";
       input.placeholder = labels[keyIndex];
       input.value = item[key] || "";
+      markRichTextEditable(input, "single");
       input.addEventListener("input", () => {
         item[key] = input.value;
         scheduleSave();
@@ -1550,10 +1606,15 @@ function capacityCard(cap, index) {
   title.className = "capacity-name-input";
   title.placeholder = "Nom de la capacité";
   title.value = cap.name || "";
+  markRichTextEditable(title, "single", "capacities.name");
   title.addEventListener("input", () => {
     cap.name = title.value;
     scheduleSave();
   });
+
+  const costSummary = document.createElement("div");
+  costSummary.className = "capacity-cost-summary";
+  updateCapacitySummary(costSummary, cap.cost);
 
   const dragHandle = document.createElement("div");
   dragHandle.className = "capacity-drag-handle";
@@ -1570,7 +1631,7 @@ function capacityCard(cap, index) {
     render();
     scheduleSave();
   });
-  head.append(prepared, title, dragHandle, remove);
+  head.append(prepared, title, costSummary, dragHandle, remove);
 
   const meta = document.createElement("div");
   meta.className = "capacity-meta";
@@ -1582,20 +1643,19 @@ function capacityCard(cap, index) {
 
   const visual = document.createElement("div");
   visual.className = "capacity-visual";
-  visual.append(capacityImageBlock(cap), capacityDetailsBlock(cap));
+  visual.append(capacityImageBlock(cap), capacityDetailsBlock(cap, costSummary));
 
   const descriptionWrap = document.createElement("div");
   descriptionWrap.className = "capacity-description-block";
-  const descriptionLabel = document.createElement("label");
-  descriptionLabel.textContent = "Description";
   const description = document.createElement("textarea");
   description.className = "capacity-description";
   description.value = cap.description || "";
+  markRichTextEditable(description, "multiline", "capacities.description");
   description.addEventListener("input", () => {
     cap.description = description.value;
     scheduleSave();
   });
-  descriptionWrap.append(descriptionLabel, description);
+  descriptionWrap.append(description);
 
   card.append(head, meta, visual, descriptionWrap);
   return card;
@@ -1667,6 +1727,7 @@ function capacityMetaField(cap, key, labelText) {
   label.textContent = labelText;
   const input = document.createElement("input");
   input.value = cap[key] || "";
+  markRichTextEditable(input, "single", `capacities.${key}`);
   input.addEventListener("input", () => {
     cap[key] = input.value;
     scheduleSave();
@@ -1701,6 +1762,7 @@ function capacityValueField(cap, path, labelText) {
   label.textContent = labelText;
   const input = document.createElement("input");
   input.value = getPath(cap, path, "");
+  markRichTextEditable(input, "single", `capacities.${path}`);
   input.addEventListener("input", () => {
     setPath(cap, path, input.value);
     scheduleSave();
@@ -1709,7 +1771,7 @@ function capacityValueField(cap, path, labelText) {
   return wrap;
 }
 
-function capacityCostInput(cap, key, labelText, totalInput) {
+function capacityCostInput(cap, key, labelText, totalInput, costSummary = null) {
   const wrap = document.createElement("label");
   wrap.className = "capacity-cost-mini";
   const label = document.createElement("span");
@@ -1722,6 +1784,9 @@ function capacityCostInput(cap, key, labelText, totalInput) {
     const total = computeCapacityTotal(cap.cost);
     cap.cost.total = total;
     totalInput.value = total;
+    if (costSummary) {
+      updateCapacitySummary(costSummary, cap.cost);
+    }
     scheduleSave();
   });
   wrap.append(label, input);
@@ -1740,7 +1805,34 @@ function updateColorSelectAppearance(select) {
   select.classList.add(`color-${select.value}`);
 }
 
-function capacityDetailsBlock(cap) {
+function capacityColorMeta(colorValue) {
+  const normalized = normalizeCapacityColor(colorValue);
+  const option = CAPACITY_COLOR_OPTIONS.find((item) => item.value === normalized) || CAPACITY_COLOR_OPTIONS[0];
+  return {
+    value: normalized,
+    symbol: option.symbol,
+    toneClass: normalized === "heart" || normalized === "diamond" ? "is-red" : "is-dark"
+  };
+}
+
+function updateCapacitySummary(element, cost = {}) {
+  const color = capacityColorMeta(cost.color);
+  const total = computeCapacityTotal(cost);
+  element.className = `capacity-cost-summary ${color.toneClass}`;
+  element.innerHTML = "";
+
+  const totalValue = document.createElement("span");
+  totalValue.className = "capacity-cost-summary-value";
+  totalValue.textContent = String(total);
+
+  const colorValue = document.createElement("span");
+  colorValue.className = "capacity-cost-summary-color";
+  colorValue.textContent = color.symbol;
+
+  element.append(totalValue, colorValue);
+}
+
+function capacityDetailsBlock(cap, costSummary = null) {
   const wrap = document.createElement("div");
   wrap.className = "capacity-details";
 
@@ -1766,19 +1858,22 @@ function capacityDetailsBlock(cap) {
   totalInput.readOnly = true;
   totalInput.value = computeCapacityTotal(cap.cost);
   cap.cost.total = toNumber(totalInput.value, 0);
+  if (costSummary) {
+    updateCapacitySummary(costSummary, cap.cost);
+  }
 
   const formulaRow = document.createElement("div");
   formulaRow.className = "capacity-cost-formula";
   formulaRow.append(
-    capacityCostInput(cap, "base", "Base", totalInput),
+    capacityCostInput(cap, "base", "Base", totalInput, costSummary),
     capacityOperator("-"),
-    capacityCostInput(cap, "incantationReduction", "Incantation", totalInput),
+    capacityCostInput(cap, "incantationReduction", "Incantation", totalInput, costSummary),
     capacityOperator("-"),
-    capacityCostInput(cap, "colorReduction", "Couleur", totalInput),
+    capacityCostInput(cap, "colorReduction", "Couleur", totalInput, costSummary),
     capacityOperator("-"),
-    capacityCostInput(cap, "awakeningReduction", "Éveil", totalInput),
+    capacityCostInput(cap, "awakeningReduction", "Éveil", totalInput, costSummary),
     capacityOperator("-"),
-    capacityCostInput(cap, "weaponMasteryReduction", "Arme", totalInput)
+    capacityCostInput(cap, "weaponMasteryReduction", "Arme", totalInput, costSummary)
   );
 
   const footer = document.createElement("div");
@@ -1805,10 +1900,13 @@ function capacityDetailsBlock(cap) {
   colorSelect.addEventListener("change", () => {
     cap.cost.color = colorSelect.value;
     updateColorSelectAppearance(colorSelect);
+    if (costSummary) {
+      updateCapacitySummary(costSummary, cap.cost);
+    }
     scheduleSave();
   });
   updateColorSelectAppearance(colorSelect);
-  colorField.append(colorLabel, colorSelect);
+  colorField.append(colorSelect, colorLabel);
 
   footer.append(totalWrap, colorField);
   costSection.append(costTitle, formulaRow, footer);
@@ -1855,6 +1953,7 @@ function renderFeatsPanel() {
     const name = document.createElement("input");
     name.placeholder = "Titre du don";
     name.value = feat.title || "";
+    markRichTextEditable(name, "single", "feats.title");
     name.addEventListener("input", () => {
       feat.title = name.value;
       scheduleSave();
@@ -1873,6 +1972,7 @@ function renderFeatsPanel() {
     const description = document.createElement("textarea");
     description.placeholder = "Description";
     description.value = feat.description || "";
+    markRichTextEditable(description, "multiline", "feats.description");
     description.addEventListener("input", () => {
       feat.description = description.value;
       scheduleSave();
@@ -1912,6 +2012,7 @@ function renderWeaponMasteriesPanel() {
     const family = document.createElement("input");
     family.placeholder = "Famille d’arme";
     family.value = item.family || "";
+    markRichTextEditable(family, "single", "weaponMasteries.family");
     family.addEventListener("input", () => {
       item.family = family.value;
       scheduleSave();
@@ -1967,7 +2068,7 @@ function renderCardsAbilitiesPanel() {
   [
     ["cardMin", "Carte min", false],
     ["cardMax", "Carte max", false],
-    ["knownAbilities", "Capacités connues", true],
+    ["knownAbilities", "Capacités connues", false],
     ["maxPreparedAbilities", "Capacités préparées max", false]
   ].forEach(([key, label, readOnly]) => top.append(masteryField(controls, key, label, { readOnly })));
 
@@ -2049,6 +2150,9 @@ function masteryField(target, key, labelText, options = {}) {
   const targetPath = target === state.character.abilityControls ? `abilityControls.${key}` : key;
   input.dataset.path = targetPath;
   input.value = target[key] ?? "";
+  if (shouldEnableRichText(targetPath, "text", options)) {
+    markRichTextEditable(input, "single", targetPath);
+  }
   if (options.readOnly) {
     input.dataset.locked = "true";
     input.readOnly = true;
@@ -2142,6 +2246,9 @@ function equipmentField(target, fieldName) {
   label.textContent = equipmentFieldLabel(fieldName);
   const input = document.createElement(fieldName === "description" ? "textarea" : "input");
   input.value = target[fieldName] || "";
+  if (["nom", "enchantement", "description"].includes(fieldName)) {
+    markRichTextEditable(input, fieldName === "description" ? "multiline" : "single", `equipment.${fieldName}`);
+  }
   input.addEventListener("input", () => {
     target[fieldName] = input.value;
     recalculate();
@@ -2261,6 +2368,7 @@ function renderInventoryItem(item, index) {
   descriptionLabel.textContent = "Description";
   const textarea = document.createElement("textarea");
   textarea.value = item.description || "";
+  markRichTextEditable(textarea, "multiline", "inventoryItems.description");
   textarea.addEventListener("input", () => {
     item.description = textarea.value;
     scheduleSave();
@@ -2322,6 +2430,9 @@ function inventoryTextField(item, key, labelText) {
   label.textContent = labelText;
   const input = document.createElement("input");
   input.value = item[key] || "";
+  if (key === "name") {
+    markRichTextEditable(input, "single", `inventoryItems.${key}`);
+  }
   input.addEventListener("input", () => {
     item[key] = input.value;
     scheduleSave();
@@ -2431,6 +2542,9 @@ function renderInventoryWeaponDetails(item, onChange = () => {}) {
     const input = document.createElement(key === "familySummary" ? "textarea" : "input");
     input.dataset.inventoryKey = key;
     input.value = item[key] || "";
+    if (["name", "familySummary"].includes(key)) {
+      markRichTextEditable(input, key === "familySummary" ? "multiline" : "single", `inventoryItems.${key}`);
+    }
     if (key === "parade") {
       input.readOnly = true;
       input.tabIndex = -1;
@@ -2505,6 +2619,7 @@ function equipInventoryItem(item) {
       raretePrix: item.equipmentData?.raretePrix || item.raretePrix || "",
       description: item.equipmentData?.description || item.description || ""
     });
+    recalculateDerivedValues();
     setStatus(`${EQUIPMENT_SLOT_LABELS[slot]} équipé`);
     render();
     scheduleSave();
@@ -2538,12 +2653,14 @@ function equipInventoryItem(item) {
   if (state.character.weapons.length < 3) {
     if (firstEmptyIndex >= 0) {
       state.character.weapons[firstEmptyIndex] = equippedWeapon;
+      recalculateDerivedValues();
       setStatus(`Arme équipée dans l'emplacement ${firstEmptyIndex + 1}`);
       render();
       scheduleSave();
       return;
     }
     state.character.weapons.push(equippedWeapon);
+    recalculateDerivedValues();
     setStatus("Arme ajoutée aux armes équipées");
     render();
     scheduleSave();
@@ -2551,12 +2668,14 @@ function equipInventoryItem(item) {
   }
   if (firstEmptyIndex >= 0) {
     state.character.weapons[firstEmptyIndex] = equippedWeapon;
+    recalculateDerivedValues();
     setStatus(`Arme équipée dans l'emplacement ${firstEmptyIndex + 1}`);
     render();
     scheduleSave();
     return;
   }
   state.character.weapons[0] = equippedWeapon;
+  recalculateDerivedValues();
   setStatus("Arme 1 remplacée");
   render();
   scheduleSave();
@@ -2581,10 +2700,17 @@ function renderTokenSummaryCard() {
     ["resources.tokens.esprit", "Esprit"],
     ["resources.tokens.social", "Social"]
   ].forEach(([path, labelText]) => {
-    wrap.append(combatField(path, labelText, "token-box", "number", { readOnly: true }));
+    wrap.append(combatField(path, labelText, "token-box", "number"));
   });
   card.append(title, wrap);
   return card;
+}
+
+async function synchronizeCharacter() {
+  recalculateDerivedValues();
+  render();
+  await saveCharacter();
+  setStatus("Synchronisation effectuée");
 }
 
 function toggleNotesWidget(forceOpen = null) {
@@ -2633,6 +2759,7 @@ function renderFloatingNotesWidget() {
   const textarea = document.createElement("textarea");
   textarea.dataset.notesSync = "true";
   textarea.value = state.character?.notes || "";
+  markRichTextEditable(textarea, "multiline", "notes");
   textarea.readOnly = !isEditMode();
   textarea.placeholder = "Écris tes notes ici...";
   textarea.addEventListener("input", () => {
@@ -2854,7 +2981,6 @@ function renderFloatingGuideWidget() {
 }
 
 function recalculate() {
-  recalculateDerivedValues();
   for (const stat of state.template?.stats || []) {
     const el = document.querySelector(`[data-mod-for="${stat.key}"]`);
     if (el) {
@@ -3158,6 +3284,8 @@ async function init() {
   if (deleteButton) deleteButton.addEventListener("click", deleteCurrentCharacter);
   const saveButton = $("#saveCharacter");
   if (saveButton) saveButton.addEventListener("click", saveCharacter);
+  const syncButton = $("#syncCharacter");
+  if (syncButton) syncButton.addEventListener("click", synchronizeCharacter);
   const exportButton = $("#exportJson");
   if (exportButton) exportButton.addEventListener("click", exportPackage);
   const newCharacterButton = $("#newCharacter");
